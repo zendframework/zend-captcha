@@ -14,22 +14,58 @@
  *
  * @category   Zend
  * @package    Zend_Captcha
- * @subpackage Exception
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\Captcha\Exception;
+namespace ZendTest\Captcha\TestAsset;
+
+use Zend\Captcha\AdapterInterface;
 
 /**
- * Exception for Zend_Form component.
- *
  * @category   Zend
  * @package    Zend_Captcha
- * @subpackage Exception
+ * @subpackage UnitTest
  * @copyright  Copyright (c) 2005-2012 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class ExtensionNotLoadedException extends RuntimeException
+class MockCaptcha implements AdapterInterface
 {
+    public $name;
+    public $options = array();
+
+    public function __construct($options = null)
+    {
+        $this->options = $options;
+    }
+
+    public function generate()
+    {
+    }
+
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getHelperName()
+    {
+        return 'doctype';
+    }
+
+    public function isValid($value)
+    {
+        return true;
+    }
+
+    public function getMessages()
+    {
+        return array();
+    }
 }
