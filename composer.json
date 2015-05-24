@@ -33,6 +33,8 @@
         "zendframework/zend-validator": "Zend\\Validator component",
         "zendframework/zendservice-recaptcha": "ZendService\\ReCaptcha component"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "extra": {
         "branch-alias": {
             "dev-master": "2.4-dev",
