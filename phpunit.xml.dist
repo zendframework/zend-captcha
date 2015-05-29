@@ -28,7 +28,7 @@
              functionality works as expected. Such tests include those for
              Zend\Soap and Zend\Session, which require that headers not be sent
              in order to work. -->
-        <const name="TESTS_ZEND_OB_ENABLED" value="false" />
+        <env name="TESTS_ZEND_OB_ENABLED" value="false" />
 
         <!-- Note: the following is a FULL list of ALL POSSIBLE constants
              currently in use in ZF2 for ALL COMPONENTS; you should choose the
@@ -36,11 +36,11 @@
 
         <!-- Enable this if you have installed ZendService\ReCaptcha on the
              include_path or via Composer. -->
-        <const name="TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT" value="false" />
+        <env name="TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT" value="false" />
 
         <!-- Enable this to test GC operations. These often fail in parallel
              build environments. -->
-        <const name="TESTS_ZEND_CAPTCHA_GC" value="false" />
+        <env name="TESTS_ZEND_CAPTCHA_GC" value="false" />
 
     </php>
 </phpunit>
