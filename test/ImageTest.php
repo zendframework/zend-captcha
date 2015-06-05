@@ -47,11 +47,11 @@ class ImageTest extends \PHPUnit_Framework_TestCase
             @mkdir($this->testDir);
         }
 
-        $this->captcha = new ImageCaptcha(array(
+        $this->captcha = new ImageCaptcha([
             'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer',
             'imgDir'       => $this->testDir,
             'font'         => __DIR__. '/_files/Vera.ttf',
-        ));
+        ]);
     }
 
     /**
@@ -200,22 +200,22 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     public function testWordValidates()
     {
         $this->captcha->generate();
-        $input = array("id" => $this->captcha->getId(), "input" => $this->captcha->getWord());
+        $input = ["id" => $this->captcha->getId(), "input" => $this->captcha->getWord()];
         $this->assertTrue($this->captcha->isValid($input));
     }
 
     public function testMissingNotValid()
     {
         $this->captcha->generate();
-        $this->assertFalse($this->captcha->isValid(array()));
-        $input = array("input" => "blah");
+        $this->assertFalse($this->captcha->isValid([]));
+        $input = ["input" => "blah"];
         $this->assertFalse($this->captcha->isValid($input));
     }
 
     public function testWrongWordNotValid()
     {
         $this->captcha->generate();
-        $input = array("id" => $this->captcha->getId(), "input" => "blah");
+        $input = ["id" => $this->captcha->getId(), "input" => "blah"];
         $this->assertFalse($this->captcha->isValid($input));
     }
 
@@ -229,10 +229,10 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     public function testImageProvidedNotLoadableWillThrowException()
     {
         $this->setExpectedException('Zend\Captcha\Exception\ImageNotLoadableException');
-        $captcha = new ImageCaptcha(array(
+        $captcha = new ImageCaptcha([
             'font'       => __DIR__. '/../Pdf/_fonts/Vera.ttf',
             'startImage' => 'file_not_found.png',
-        ));
+        ]);
         $captcha->generate();
     }
 }
