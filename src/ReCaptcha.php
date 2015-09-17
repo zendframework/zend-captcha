@@ -171,11 +171,11 @@ class ReCaptcha extends AbstractAdapter
     public function setOption($key, $value)
     {
         $service = $this->getService();
-        if (array_key_exists($this->serviceParams[$key])) {
+        if (array_key_exists($key, $this->serviceParams)) {
             $service->setParam($key, $value);
             return $this;
         }
-        if (array_key_exists($this->serviceOptions[$key])) {
+        if (array_key_exists($key, $this->serviceOptions)) {
             $service->setOption($key, $value);
             return $this;
         }
