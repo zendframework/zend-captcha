@@ -54,7 +54,7 @@ if ($captcha->isValid($_POST['foo'], $_POST)) {
 }
 ```
 
-> ## Note
+> ### Note
 Under most circumstances, you probably prefer the use of `Zend\Captcha` functionality combined with
 the power of the `Zend\Form` component. For an example on how to use `Zend\Form\Element\Captcha`,
 have a look at the \[Zend\\Form Quick Start\](zend.form.quick-start).
