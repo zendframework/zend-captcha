@@ -46,11 +46,12 @@ for testing. It extends `Zend\Captcha\AbstractWord`.
 
 ## Zend\\Captcha\\Figlet
 
-The `Zend\Captcha\Figlet` adapter utilizes \[Zend\\Text\\Figlet\](zend.text.figlet) to present a
+The `Zend\Captcha\Figlet` adapter utilizes `Zend\Text\Figlet` to present a
 figlet to the user.
 
 Options passed to the constructor will also be passed to the
-\[Zend\\Text\\Figlet\](zend.text.figlet) object. See the \[Zend\\Text\\Figlet\](zend.text.figlet)
+`Zend\Text\Figlet` object. See the
+[`Zend\Text\Figlet`](https://zendframework.github.io/zend-text/figlet/)
 documentation for details on what configuration options are available.
 
 ## Zend\\Captcha\\Image
@@ -96,7 +97,8 @@ and casting the initial letter to lowercase: "suffix", "height", "imgUrl", etc.
 ## Zend\\Captcha\\ReCaptcha
 
 The `Zend\Captcha\ReCaptcha` adapter uses
-\[Zend\\Service\\ReCaptcha\\ReCaptcha\](zendservice.recaptcha) to generate and validate *CAPTCHA*s.
+[`Zend\Service\ReCaptcha\ReCaptcha`](https://github.com/zendframework/ZendService_ReCaptcha) to generate 
+and validate *CAPTCHA*s.
 It exposes the following methods:
 
 - `setPrivKey($key)` and `getPrivKey()` allow you to specify the private key to use for the

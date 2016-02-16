@@ -11,4 +11,4 @@ submissions.
 Captchas can take a variety of forms, including asking logic questions, presenting skewed fonts, and
 presenting multiple images and asking how they relate. The `Zend\Captcha` component aims to provide
 a variety of back ends that may be utilized either standalone or in conjunction with the
-\[Zend\\Form component\](zend.form.intro).
+[`Zend\Form` component](https://github.com/zendframework/zend-form).
