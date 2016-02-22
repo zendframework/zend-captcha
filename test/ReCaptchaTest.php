@@ -45,6 +45,8 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
             'pubKey'  => 'publicKey',
             'ssl'     => true,
             'xhtml'   => true,
+            'lang'    => null,
+            'theme'   => 'red',
         ];
         $captcha = new ReCaptcha($options);
         $test    = $captcha->getOptions();
@@ -58,6 +60,10 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
             $this->assertArrayHasKey($key, $test);
             $this->assertSame($value, $test[$key]);
         }
+
+        $test = $service->getOptions();
+        $compare = ['lang' => $options['lang'], 'theme' => $options['theme']];
+        $this->assertEquals($compare, $test);
     }
 
     public function testShouldAllowSpecifyingServiceObject()
