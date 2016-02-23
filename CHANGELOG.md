@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.5.4 - TBD
+## 2.5.4 - 2016-02-23
 
 ### Added
 
@@ -18,7 +18,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#18](https://github.com/zendframework/zend-captcha/pull/18) updates
+  dependencies to known-stable, forwards-compatible versions.
 
 ## 2.5.3 - 2016-02-22
 
