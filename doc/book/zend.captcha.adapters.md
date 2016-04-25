@@ -15,19 +15,19 @@ ID>`").
 In addition to the methods required by the `Zend\Captcha\AdapterInterface` interface,
 `Zend\Captcha\AbstractWord` exposes the following methods:
 
-- `setWordLen($length)` and `getWordLen()` allow you to specify the length of the generated "word"
+* `setWordLen($length)` and `getWordLen()` allow you to specify the length of the generated "word"
 in characters, and to retrieve the current value.
-- `setTimeout($ttl)` and `getTimeout()` allow you to specify the time-to-live of the session token,
+* `setTimeout($ttl)` and `getTimeout()` allow you to specify the time-to-live of the session token,
 and to retrieve the current value. `$ttl` should be specified in seconds.
-- `setUseNumbers($numbers)` and `getUseNumbers()` allow you to specify if numbers will be considered
+* `setUseNumbers($numbers)` and `getUseNumbers()` allow you to specify if numbers will be considered
 as possible characters for the random work or only letters would be used.
-- `setSessionClass($class)` and `getSessionClass()` allow you to specify an alternate
+* `setSessionClass($class)` and `getSessionClass()` allow you to specify an alternate
 `Zend\Session\Container` implementation to use to persist the *CAPTCHA* token and to retrieve the
 current value.
-- `getId()` allows you to retrieve the current token identifier.
-- `getWord()` allows you to retrieve the generated word to use with the *CAPTCHA*. It will generate
+* `getId()` allows you to retrieve the current token identifier.
+* `getWord()` allows you to retrieve the generated word to use with the *CAPTCHA*. It will generate
 the word for you if none has been generated yet.
-- `setSession(Zend\Session\Container $session)` allows you to specify a session object to use for
+* `setSession(Zend\Session\Container $session)` allows you to specify a session object to use for
 persisting the *CAPTCHA* token. `getSession()` allows you to retrieve the current session object.
 
 All word *CAPTCHA*s allow you to pass an array of options or `Traversable` object to the
@@ -63,29 +63,29 @@ extension](http://php.net/gd) compiled with TrueType or Freetype support. Curren
 `Zend\Captcha\Image` extends `Zend\Captcha\AbstractWord`, and additionally exposes the following
 methods:
 
-- `setExpiration($expiration)` and `getExpiration()` allow you to specify a maximum lifetime the
+* `setExpiration($expiration)` and `getExpiration()` allow you to specify a maximum lifetime the
 *CAPTCHA* image may reside on the filesystem. This is typically a longer than the session lifetime.
 Garbage collection is run periodically each time the *CAPTCHA* object is invoked, deleting all
 images that have expired. Expiration values should be specified in seconds.
-- `setGcFreq($gcFreq)` and `getGcFreg()` allow you to specify how frequently garbage collection
+* `setGcFreq($gcFreq)` and `getGcFreg()` allow you to specify how frequently garbage collection
 should run. Garbage collection will run every `1/$gcFreq` calls. The default is 100.
-- `setFont($font)` and `getFont()` allow you to specify the font you will use. `$font` should be a
+* `setFont($font)` and `getFont()` allow you to specify the font you will use. `$font` should be a
 fully qualified path to the font file. This value is required; the *CAPTCHA* will throw an exception
 during generation if the font file has not been specified.
-- `setFontSize($fsize)` and `getFontSize()` allow you to specify the font size in pixels for
+* `setFontSize($fsize)` and `getFontSize()` allow you to specify the font size in pixels for
 generating the *CAPTCHA*. The default is 24px.
-- `setHeight($height)` and `getHeight()` allow you to specify the height in pixels of the generated
+* `setHeight($height)` and `getHeight()` allow you to specify the height in pixels of the generated
 *CAPTCHA* image. The default is 50px.
-- `setWidth($width)` and `getWidth()` allow you to specify the width in pixels of the generated
+* `setWidth($width)` and `getWidth()` allow you to specify the width in pixels of the generated
 *CAPTCHA* image. The default is 200px.
-- `setImgDir($imgDir)` and `getImgDir()` allow you to specify the directory for storing *CAPTCHA*
+* `setImgDir($imgDir)` and `getImgDir()` allow you to specify the directory for storing *CAPTCHA*
 images. The default is "`./images/captcha/`", relative to the bootstrap script.
-- `setImgUrl($imgUrl)` and `getImgUrl()` allow you to specify the relative path to a *CAPTCHA* image
+* `setImgUrl($imgUrl)` and `getImgUrl()` allow you to specify the relative path to a *CAPTCHA* image
 to use for *HTML* markup. The default is "`/images/captcha/`".
-- `setSuffix($suffix)` and `getSuffix()` allow you to specify the filename suffix for the *CAPTCHA*
+* `setSuffix($suffix)` and `getSuffix()` allow you to specify the filename suffix for the *CAPTCHA*
 image. The default is "`.png`". Note: changing this value will not change the type of the generated
 image.
-- `setDotNoiseLevel($level)` and `getDotNoiseLevel()`, along with `setLineNoiseLevel($level)` and
+* `setDotNoiseLevel($level)` and `getDotNoiseLevel()`, along with `setLineNoiseLevel($level)` and
 `getLineNoiseLevel()`, allow you to control how much "noise" in the form of random dots and lines
 the image would contain. Each unit of `$level` produces one random dot or line. The default is 100
 dots and 5 lines. The noise is added twice - before and after the image distortion transformation.
@@ -99,11 +99,11 @@ The `Zend\Captcha\ReCaptcha` adapter uses
 \[Zend\\Service\\ReCaptcha\\ReCaptcha\](zendservice.recaptcha) to generate and validate *CAPTCHA*s.
 It exposes the following methods:
 
-- `setPrivKey($key)` and `getPrivKey()` allow you to specify the private key to use for the
+* `setPrivKey($key)` and `getPrivKey()` allow you to specify the private key to use for the
 ReCaptcha service. This must be specified during construction, although it may be overridden at any
 point.
-- `setPubKey($key)` and `getPubKey()` allow you to specify the public key to use with the ReCaptcha
+* `setPubKey($key)` and `getPubKey()` allow you to specify the public key to use with the ReCaptcha
 service. This must be specified during construction, although it may be overridden at any point.
-- `setService(ZendService\ReCaptcha\ReCaptcha $service)` and `getService()` allow you to set and get
+* `setService(ZendService\ReCaptcha\ReCaptcha $service)` and `getService()` allow you to set and get
 the ReCaptcha service object.
 
