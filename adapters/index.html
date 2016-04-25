@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    <title>Adapters - zend-captcha</title>
+
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.018/css/hack.min.css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/zf.css" rel="stylesheet">
+    <link href="../css/prism-zf.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js"></script>
+    <script>
+    WebFont.load({
+        google: {
+            families: ['Open Sans', 'PT Sans']
+        }
+    });
+    </script>
+
+    
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+            <span class="navbar-brand">
+              <a class="logo-link" href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Zend Framework"><img src="../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
+              <a href="..">zend-captcha</a>
+            </span>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../intro/">Intro</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../usage/">Usage</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Adapters</a>
+                    </li>
+                
+                
+                </ul>
+            
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" class="component-toggle" data-toggle="tooltip" data-placement="bottom" title="Show component list">
+                        <i class="fa fa-book"></i> Components
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                
+                    <li>
+                        <a href="https://github.com/zendframework/zend-captcha">
+                            
+                                <i class="fa fa-github"></i>
+                            
+                            GitHub
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <!-- content:begin -->
+    <div class="container">
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#captcha-adapters">CAPTCHA Adapters</a></li>
+        
+            <li><a href="#the-adapterinterface">The AdapterInterface</a></li>
+        
+            <li><a href="#zend92captcha92abstractword">Zend\Captcha\AbstractWord</a></li>
+        
+            <li><a href="#zend92captcha92dumb">Zend\Captcha\Dumb</a></li>
+        
+            <li><a href="#zend92captcha92figlet">Zend\Captcha\Figlet</a></li>
+        
+            <li><a href="#zend92captcha92image">Zend\Captcha\Image</a></li>
+        
+            <li><a href="#zend92captcha92recaptcha">Zend\Captcha\ReCaptcha</a></li>
+        
+    
+    </ul>
+
+    
+    <ul class="pager hidden-print">
+      <li class="previous">
+        <a rel="prev" href="../usage/"><i class="fa fa-arrow-left"></i> Previous</a>
+      </li>
+      <li class="next disabled ">
+        <a rel="next" >Next <i class="fa fa-arrow-right"></i></a>
+      </li>
+    </ul>
+    
+</div></div>
+        <div class="col-md-9" role="main">
+
+<ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
+  <li><a href="..">Docs</a> &raquo;</li>
+  
+    
+  
+  <li class="active">Adapters</li>
+</ol>
+
+<h1 id="captcha-adapters">CAPTCHA Adapters</h1>
+<p>zend-captcha defines an abstraction for CAPTCHA implementations via
+<code>Zend\Captcha\AdapterInterface</code>, and provides several implementations.</p>
+<h2 id="the-adapterinterface">The AdapterInterface</h2>
+<p>All CAPTCHA adapters implement <code>Zend\Captcha\AdapterInterface</code>:</p>
+<pre class="codehilite"><code class="language-php">namespace Zend\Captcha;
+
+use Zend\Validator\ValidatorInterface;
+
+interface AdapterInterface extends ValidatorInterface
+{
+    public function generate();
+
+    public function setName($name);
+
+    public function getName();
+
+    // Get helper name used for rendering this CAPTCHA type
+    public function getHelperName();
+}</code></pre>
+
+
+<p>The <code>name</code> setter and getter are used to specify and retrieve the CAPTCHA identifier.</p>
+<p>The most interesting method is <code>generate()</code>, which is used to create the CAPTCHA
+token. This process typically will store the token in the session so that you
+may compare against it in subsequent requests.</p>
+<p>Most implementations also define a <code>render()</code> method (or delegate to one) in
+order to produce a CAPTCHA representation, be it an image, a figlet, a logic
+problem, or some other CAPTCHA.</p>
+<h2 id="zend92captcha92abstractword">Zend\Captcha\AbstractWord</h2>
+<p><code>Zend\Captcha\AbstractWord</code> is an abstract adapter that serves as the base class
+for most other CAPTCHA adapters. It provides mutators for specifying word
+length, session TTL and the session container object to use; it also
+encapsulates validation logic.</p>
+<p>By default, the word length is 8 characters, the session timeout is 5 minutes,
+and <code>Zend\Session\Container</code> is used for persistence (using the namespace
+"<code>Zend\Form\Captcha\&lt;captcha ID&gt;</code>").</p>
+<p>In addition to the methods required by the <code>Zend\Captcha\AdapterInterface</code> interface,
+<code>Zend\Captcha\AbstractWord</code> exposes the following methods:</p>
+<ul>
+<li><code>setWordLen($length)</code> and <code>getWordLen()</code> allow you to specify the length of
+  the generated "word" in characters, and to retrieve the current value.</li>
+<li><code>setTimeout($ttl)</code> and <code>getTimeout()</code> allow you to specify the time-to-live of
+  the session token, and to retrieve the current value. <code>$ttl</code> should be
+  specified in <em>seconds</em>.</li>
+<li><code>setUseNumbers($numbers)</code> and <code>getUseNumbers()</code> allow you to specify if
+  numbers will be considered as possible characters for the random word, or if
+  only letters would be used.</li>
+<li><code>setSessionClass($class)</code> and <code>getSessionClass()</code> allow you to specify an
+  alternate <code>Zend\Session\Container</code> implementation to use to persist the
+  CAPTCHA token and to retrieve the current value.</li>
+<li><code>getId()</code> allows you to retrieve the current token identifier.</li>
+<li><code>getWord()</code> allows you to retrieve the generated word to use with the CAPTCHA.
+  It will generate the word for you if none has been generated yet.</li>
+<li><code>setSession(Zend\Session\Container $session)</code> allows you to specify a session
+  object to use for persisting the CAPTCHA token. <code>getSession()</code> allows you to
+  retrieve the current session object.</li>
+</ul>
+<p>All word CAPTCHAs allow you to pass an array of options or a <code>Traversable</code>
+object to the constructor, or, alternately, pass them to <code>setOptions()</code>. By
+default, the <code>wordLen</code>, <code>timeout</code>, and <code>sessionClass</code> keys may all be used. Each
+concrete implementation may define additional keys or utilize the options in
+other ways.</p>
+<blockquote>
+<h3 id="abstractword-is-marked-abstract">AbstractWord is marked abstract</h3>
+<p><code>Zend\Captcha\AbstractWord</code> is an abstract class and may not be instantiated
+directly.</p>
+</blockquote>
+<h2 id="zend92captcha92dumb">Zend\Captcha\Dumb</h2>
+<p>The <code>Zend\Captcha\Dumb</code> adapter is mostly self-descriptive. It provides a random
+string that must be typed in reverse to validate. As such, it's not a good
+CAPTCHA solution and should only be used for testing. It extends
+<code>Zend\Captcha\AbstractWord</code>.</p>
+<h2 id="zend92captcha92figlet">Zend\Captcha\Figlet</h2>
+<p>The <code>Zend\Captcha\Figlet</code> adapter utilizes <code>Zend\Text\Figlet</code> to present a
+figlet to the user.</p>
+<p>Options passed to the constructor will also be passed to the
+<code>Zend\Text\Figlet</code> object. See the
+<a href="https://zendframework.github.io/zend-text/figlet/"><code>Zend\Text\Figlet</code></a>
+documentation for details on what configuration options are available.</p>
+<h2 id="zend92captcha92image">Zend\Captcha\Image</h2>
+<p>The <code>Zend\Captcha\Image</code> adapter takes the generated word and renders it as an
+image, performing various skewing permutations to make it difficult to
+automatically decipher. It requires the <a href="http://php.net/gd">GD extension</a>,
+compiled with TrueType or Freetype support. Currently, the <code>Zend\Captcha\Image</code>
+adapter can only generate PNG images.</p>
+<p><code>Zend\Captcha\Image</code> extends <code>Zend\Captcha\AbstractWord</code>, and additionally
+exposes the following methods:</p>
+<ul>
+<li><code>setExpiration($expiration)</code> and <code>getExpiration()</code> allow you to specify a
+  maximum lifetime the CAPTCHA image may reside on the filesystem. This is
+  typically longer than the session lifetime.  Garbage collection is run
+  periodically each time the CAPTCHA object is invoked, deleting all images
+  that have expired. Expiration values should be specified in <em>seconds</em>.</li>
+<li><code>setGcFreq($gcFreq)</code> and <code>getGcFreg()</code> allow you to specify how frequently
+  garbage collection should run. Garbage collection will run every <code>1/$gcFreq</code>
+  calls. The default is 100.</li>
+<li><code>setFont($font)</code> and <code>getFont()</code> allow you to specify the font you will use.
+  <code>$font</code> should be a fully qualified path to the font file. This value is
+  required; the CAPTCHA will throw an exception during generation if the font
+  file has not been specified.</li>
+<li><code>setFontSize($fsize)</code> and <code>getFontSize()</code> allow you to specify the font size
+  in pixels for generating the CAPTCHA. The default is 24px.</li>
+<li><code>setHeight($height)</code> and <code>getHeight()</code> allow you to specify the height in
+  pixels of the generated CAPTCHA image. The default is 50px.</li>
+<li><code>setWidth($width)</code> and <code>getWidth()</code> allow you to specify the width in pixels
+  of the generated CAPTCHA image. The default is 200px.</li>
+<li><code>setImgDir($imgDir)</code> and <code>getImgDir()</code> allow you to specify the directory for
+  storing CAPTCHA images. The default is <code>./images/captcha/</code>, relative to
+  the bootstrap script (typically <code>public/index.php</code>, resulting in
+  <code>public/images/captcha/</code>).</li>
+<li><code>setImgUrl($imgUrl)</code> and <code>getImgUrl()</code> allow you to specify the relative path
+  to a CAPTCHA image to use for HTML markup. The default is
+  <code>/images/captcha/</code>.</li>
+<li><code>setSuffix($suffix)</code> and <code>getSuffix()</code> allow you to specify the filename
+  suffix for the CAPTCHA image. The default is <code>.png</code>. Note: changing this
+  value will not change the type of the generated image.</li>
+<li><code>setDotNoiseLevel($level)</code> and <code>getDotNoiseLevel()</code>, along with
+  <code>setLineNoiseLevel($level)</code> and <code>getLineNoiseLevel()</code>, allow you to control
+  how much "noise" in the form of random dots and lines the image would contain.
+  Each unit of <code>$level</code> produces one random dot or line. The default is 100 dots
+  and 5 lines. The noise is added twice, both before and after the image
+  distortion transformation.</li>
+</ul>
+<p>All of the above options may be passed to the constructor by simply removing the
+'set' method prefix and casting the initial letter to lowercase: "suffix",
+"height", "imgUrl", etc.</p>
+<h2 id="zend92captcha92recaptcha">Zend\Captcha\ReCaptcha</h2>
+<p>The <code>Zend\Captcha\ReCaptcha</code> adapter uses <a href="https://github.com/zendframework/ZendService_ReCaptcha"><code>Zend\Service\ReCaptcha\ReCaptcha</code></a>
+to generate and validate CAPTCHAs.  It exposes the following methods:</p>
+<ul>
+<li><code>setPrivKey($key)</code> and <code>getPrivKey()</code> allow you to specify the private key to
+  use for the ReCaptcha service. This must be specified during construction,
+  although it may be overridden at any point.</li>
+<li><code>setPubKey($key)</code> and <code>getPubKey()</code> allow you to specify the public key to use
+  with the ReCaptcha service. This must be specified during construction,
+  although it may be overridden at any point.</li>
+<li><code>setService(ZendService\ReCaptcha\ReCaptcha $service)</code> and <code>getService()</code>
+  allow you to set and get the ReCaptcha service object.</li>
+</ul>
+
+<hr />
+
+
+<nav>
+  <ul class="pager hidden-print">
+    <li class="previous">
+      <a rel="prev" href="../usage/"><i class="fa fa-arrow-left"></i> Previous</a>
+    </li>
+    <li class="next disabled ">
+      <a rel="next" >Next <i class="fa fa-arrow-right"></i></a>
+    </li>
+  </ul>
+</nav>
+</div>
+        
+    </div>
+    <!-- content:end -->
+
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+    <script src="../js/prism-zf.js"></script>
+
+    <script>var base_url = '..';</script>
+    <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+    <script src="../js/base.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        From here you can search these documents. Enter your search terms below.
+                    </p>
+                    <form role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                        </div>
+                    </form>
+                    <div id="mkdocs-search-results"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zf-components">
+  <div class="zf-components-grid">
+    <div class="zf-logo">
+      <a href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="http://framework.zend.com/images/logos/zf-logo-mark.png" alt="Zend Framework" width="250" /></a>
+    </div>
+
+    <div class="component-list"></div>
+
+    <p class="zf-components-rollup"><a href="#">Hide list</a></p>
+  </div>
+</div>
+
+    <script>
+  // Prepare the component list dropdown for display
+  $(function () {
+    var components = $(".zf-components"),
+        componentList = components.find(".component-list"),
+        sidebar = $(".bs-sidebar.affix"),
+        sidebarInitialPos = sidebar.css("position"),
+        hidden,
+        componentToggle = $(".component-toggle"),
+        navbar = $(".navbar-fixed-top"),
+        rollUpLink = $(".zf-components-rollup a");
+
+    // Initial setup on document load
+    components.insertBefore(navbar);
+    $(".zf-logo a").tooltip();
+    componentToggle.tooltip();
+    rollUpLink.attr({ href: "#", alt: "Hide component list" });
+
+    // Cast initial sidebar position value
+    if (undefined === sidebarInitialPos) {
+      sidebarInitialPos = "fixed";
+    }
+
+    // Setup onclick events to toggle list
+    componentToggle.click(toggleComponentList);
+    rollUpLink.click(toggleComponentList);
+
+    // Toggle the component list display
+    function toggleComponentList(event) {
+      event.preventDefault();
+
+      if (hidden === undefined) {
+        // Not loaded yet; load and display.
+        loadComponentList();
+        return;
+      }
+
+      if (hidden) {
+        // Hidden; display.
+        showComponentList();
+        return;
+      }
+
+      // Currently visible; hide
+      hideComponentList();
+    }
+
+    // Show the component list
+    function showComponentList() {
+      navbar.css({position: "relative"});
+      sidebar.css({position: "relative"});
+      components
+        .css({"margin-top": "-" + components.outerHeight() + "px"})
+        .show()
+        .animate({"margin-top": 0}, {
+          complete: function () {
+            componentToggle
+              .data("placement", "top")
+              .attr("data-original-title", "Hide component list");
+            hidden = false;
+          },
+          queue: false
+        });
+    }
+
+    // Hide the component list
+    function hideComponentList() {
+      components.animate({"margin-top": "-" + components.outerHeight() + "px"}, {
+        complete: function () {
+          navbar.css({position: "fixed"});
+          sidebar.css({position: sidebarInitialPos});
+          componentToggle
+            .data("placement", "bottom")
+            .attr("data-original-title", "Show component list");
+          components.hide();
+          hidden = true;
+        },
+        queue: false
+      });
+      sidebar.animate({ top: sidebarInitialTop + "px" }, { queue: false});
+    }
+
+    // Inject a component into the componet list DOM.
+    function injectComponent(index, component) {
+      componentList.append('<div class="component"><h4><a href="' + component.url + '">' + component.name + '</a></h4><p>' + component.description + '</p></div>');
+    }
+
+    // Parse the component list, build the DOM, and display it.
+    function parseComponentList(components) {
+      $.each(components, injectComponent);
+      showComponentList();
+    }
+
+    // Fetch the component list and display it.
+    function loadComponentList () {
+      $.ajax({
+        url: "//zendframework.github.io/zf-mkdoc-theme/scripts/zf-component-list.json",
+        dataType: "text json",
+        success: parseComponentList,
+        error: function (e) {
+          console.log("Error occurred with XHR call", e);
+        }
+      });
+    }
+  });
+</script>
+    </body>
+
+</html>
