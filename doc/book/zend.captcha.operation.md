@@ -4,7 +4,7 @@
 
 All *CAPTCHA* adapters implement `Zend\Captcha\AdapterInterface`, which looks like the following:
 
-``` sourceCode
+```php
 namespace Zend\Captcha;
 
 use Zend\Validator\ValidatorInterface;
@@ -32,19 +32,20 @@ be it an image, a figlet, a logic problem, or some other *CAPTCHA*.
 
 A simple use case might look like the following:
 
-``` sourceCode
+```php
 // Originating request:
-$captcha = new Zend\Captcha\Figlet(array(
-    'name' => 'foo',
-    'wordLen' => 6,
-    'timeout' => 300,
-));
+$captcha = new Zend\Captcha\Figlet(
+    [
+        'name'    => 'foo',
+        'wordLen' => 6,
+        'timeout' => 300,
+    ]
+);
 
 $id = $captcha->generate();
 
 //this will output a Figlet string
 echo $captcha->getFiglet()->render($captcha->getWord());
-
 
 // On a subsequent request:
 // Assume a captcha setup as before, with corresponding form fields, the value of $_POST['foo']
