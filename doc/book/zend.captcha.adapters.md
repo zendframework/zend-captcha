@@ -35,7 +35,7 @@ constructor, or, alternately, pass them to `setOptions()`. By default, the **wor
 and **sessionClass** keys may all be used. Each concrete implementation may define additional keys
 or utilize the options in other ways.
 
-> ## Note
+> ### Note
 `Zend\Captcha\AbstractWord` is an abstract class and may not be instantiated directly.
 
 ## Zend\\Captcha\\Dumb
