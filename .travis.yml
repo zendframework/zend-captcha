@@ -10,6 +10,7 @@ branches:
 cache:
   directories:
     - $HOME/.composer/cache
+    - $HOME/.local
     - zf-mkdoc-theme
 
 env:
