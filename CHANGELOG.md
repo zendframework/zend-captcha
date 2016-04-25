@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- Adds and publishes documentation to https://zendframework.github.io/zend-captcha/
 
 ### Deprecated
 
