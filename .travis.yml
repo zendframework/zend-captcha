@@ -4,17 +4,23 @@ language: php
 
 branches:
   except:
-    - /^release-.*$/
+    - /^release-\d+\.\d+\.\d+.*$/
     - /^ghgfk-.*$/
 
 cache:
   directories:
     - $HOME/.composer/cache
+    - zf-mkdoc-theme
 
 env:
   global:
     - TESTS_ZEND_CAPTCHA_GC=true
     - TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT=true
+    - SITE_URL: https://zendframework.github.io/zend-captcha
+    - GH_USER_NAME: "Matthew Weier O'Phinney"
+    - GH_USER_EMAIL: matthew@weierophinney.net
+    - GH_REF: github.com/zendframework/zend-captcha.git
+    - secure: "xTnld/C64EfRstO7gVoZEj2MIeKEWG/d18WMeW/oPkfgJCQlm9UuAv0lpZRkvqKeMCWBRuGG0PY/nAIgF/+AkA9TXB5HBQ+jcftWdOaCp1e8qMLysGc9hOiYvekAtU1OsqPkpCGIrmBowNsKbAPJwSh3Vcw+1+Gb3MPkLjcS3WIWYa1IKd8PEyUkapzOMn/ltFrP5Vy46zvSLrZxVhl+qwF5f4+gpCp8oBJqqT5frD/pHE1o2YiId4+s6mKE9Jq2qVszWZQT/o3ii7iJ7Ea009n7b2/+WfVgBmVISoNV6bOuLRNzm2l9hublTmUB+DMlE5xiE3VDBoySkdCXgSkLq7FR/rqRpI2yz649ZgID4HkwCl77E+R55vQwNPoUmHox059j71wdaqOkTSm0vhOfF8vGxmdDj7GhEQPPbTflI9ulrh247VQlfI+Av13JmgbvPDvi7vju/QhcjeC7NSPRnvi9mQpQtEaKF6mBdh9mwgL3SD48jnsC0UI5W1TXcjczDM3Sf/P2tLtHeqii3f7ioklbn/Fi3t2VSMg6iLcj57Sk4h1NmrDhcrMIBPSgRAnLMNopzkk4uwT/u5CMqUMmI+6VFkA+qgQ1MGaZAFhribAob8WM9OJo9m0i5qmn76mE+gMX1qBFV/VdBwP2La5nhqTRfaKzM4bzTfA9pmNHje0="
 
 matrix:
   fast_finish: true
@@ -25,6 +31,7 @@ matrix:
     - php: 5.6
       env:
         - EXECUTE_TEST_COVERALLS=true
+        - DEPLOY_DOCS="$(if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then echo -n 'true' ; else echo -n 'false' ; fi)"
     - php: 7
     - php: hhvm 
   allow_failures:
@@ -46,6 +53,10 @@ script:
   - if [[ $EXECUTE_TEST_COVERALLS == 'true' ]]; then ./vendor/bin/phpunit --coverage-clover clover.xml ; fi
   - if [[ $EXECUTE_TEST_COVERALLS != 'true' ]]; then ./vendor/bin/phpunit ; fi
   - if [[ $EXECUTE_CS_CHECK == 'true' ]]; then ./vendor/bin/php-cs-fixer fix -v --diff --dry-run ; fi
+  - if [[ $DEPLOY_DOCS == "true" && "$TRAVIS_TEST_RESULT" == "0" ]]; then wget -O theme-installer.sh "https://raw.githubusercontent.com/zendframework/zf-mkdoc-theme/master/theme-installer.sh" ; chmod 755 theme-installer.sh ; ./theme-installer.sh ; fi
+
+after_success:
+  - if [[ $DEPLOY_DOCS == "true" ]]; then echo "Preparing to build and deploy documentation" ; ./zf-mkdoc-theme/deploy.sh ; echo "Completed deploying documentation" ; fi
 
 after_script:
   - if [[ $EXECUTE_TEST_COVERALLS == 'true' ]]; then ./vendor/bin/coveralls ; fi
