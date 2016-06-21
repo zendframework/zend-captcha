@@ -2,10 +2,11 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.6.0 - TBD
+## 2.6.0 - 2016-06-21
 
 ### Added
 
+- Adds and publishes documentation to https://zendframework.github.io/zend-captcha/
 - [#20](https://github.com/zendframework/zend-captcha/pull/20) adds support for
   zend-math v3.
 
@@ -17,24 +18,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - [#20](https://github.com/zendframework/zend-captcha/pull/20) removes support for
   PHP 5.5
-
-### Fixed
-
-- Nothing.
-
-## 2.5.5 - TBD
-
-### Added
-
-- Adds and publishes documentation to https://zendframework.github.io/zend-captcha/
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
 
 ### Fixed
 
