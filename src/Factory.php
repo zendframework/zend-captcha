@@ -74,8 +74,9 @@ abstract class Factory
 
         if (!$captcha instanceof AdapterInterface) {
             throw new Exception\DomainException(sprintf(
-                '%s expects the "class" attribute to resolve to a valid Zend\Captcha\AdapterInterface instance; received "%s"',
+                '%s expects the "class" attribute to resolve to a valid %s instance; received "%s"',
                 __METHOD__,
+                AdapterInterface::class,
                 $class
             ));
         }
