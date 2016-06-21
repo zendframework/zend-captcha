@@ -6,7 +6,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#20](https://github.com/zendframework/zend-captcha/pull/20) adds support for
+  zend-math v3.
 
 ### Deprecated
 
@@ -14,7 +15,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Removed
 
-- Nothing.
+- [#20](https://github.com/zendframework/zend-captcha/pull/20) removes support for
+  PHP 5.5
 
 ### Fixed
 
