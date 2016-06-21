@@ -19,14 +19,16 @@ use Zend\Session\Container;
  */
 abstract class AbstractWord extends AbstractAdapter
 {
+    // @codingStandardsIgnoreStart
     /**#@+
      * @var array Character sets
      */
     public static $V  = ["a", "e", "i", "o", "u", "y"];
-    public static $VN = ["a", "e", "i", "o", "u", "y","2","3","4","5","6","7","8","9"];
-    public static $C  = ["b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z"];
-    public static $CN = ["b","c","d","f","g","h","j","k","m","n","p","q","r","s","t","u","v","w","x","z","2","3","4","5","6","7","8","9"];
+    public static $VN = ["a", "e", "i", "o", "u", "y", "2", "3", "4", "5", "6", "7", "8", "9"];
+    public static $C  = ["b", "c", "d", "f", "g", "h", "j", "k", "m", "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "z"];
+    public static $CN = ["b", "c", "d", "f", "g", "h", "j", "k", "m", "n", "p", "q", "r", "s", "t", "u", "v", "w", "x", "z", "2", "3", "4", "5", "6", "7", "8", "9"];
     /**#@-*/
+    // @codingStandardsIgnoreEnd
 
     /**
      * Random session ID

@@ -11,12 +11,12 @@ namespace ZendTest\Captcha\TestAsset;
 
 class SessionContainer
 {
-    protected static $_word;
+    protected static $word;
 
     public function __get($name)
     {
         if ('word' == $name) {
-            return static::$_word;
+            return static::$word;
         }
 
         return null;
@@ -25,7 +25,7 @@ class SessionContainer
     public function __set($name, $value)
     {
         if ('word' == $name) {
-            static::$_word = $value;
+            static::$word = $value;
         } else {
             $this->$name = $value;
         }
@@ -33,7 +33,7 @@ class SessionContainer
 
     public function __isset($name)
     {
-        if (('word' == $name) && (null !== static::$_word))  {
+        if (('word' == $name) && (null !== static::$word)) {
             return true;
         }
 
