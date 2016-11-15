@@ -244,9 +244,9 @@ abstract class AbstractWord extends AbstractAdapter
      */
     public function getSession()
     {
-        if (!isset($this->session) || (null === $this->session)) {
+        if (! isset($this->session) || (null === $this->session)) {
             $id = $this->getId();
-            if (!class_exists($this->sessionClass)) {
+            if (! class_exists($this->sessionClass)) {
                 throw new Exception\InvalidArgumentException("Session class $this->sessionClass not found");
             }
             $this->session = new $this->sessionClass('Zend_Form_Captcha_' . $id);
@@ -313,7 +313,7 @@ abstract class AbstractWord extends AbstractAdapter
 
         $totIndexCon = count($consonants) - 1;
         $totIndexVow = count($vowels) - 1;
-        for ($i=0; $i < $wordLen; $i = $i + 2) {
+        for ($i = 0; $i < $wordLen; $i = $i + 2) {
             // generate word with mix of vowels and consonants
             $consonant = $consonants[Rand::getInteger(0, $totIndexCon, true)];
             $vowel     = $vowels[Rand::getInteger(0, $totIndexVow, true)];
@@ -334,7 +334,7 @@ abstract class AbstractWord extends AbstractAdapter
      */
     public function generate()
     {
-        if (!$this->keepSession) {
+        if (! $this->keepSession) {
             $this->session = null;
         }
         $id = $this->generateRandomId();
@@ -364,8 +364,8 @@ abstract class AbstractWord extends AbstractAdapter
      */
     public function isValid($value, $context = null)
     {
-        if (!is_array($value)) {
-            if (!is_array($context)) {
+        if (! is_array($value)) {
+            if (! is_array($context)) {
                 $this->error(self::MISSING_VALUE);
                 return false;
             }
@@ -378,14 +378,14 @@ abstract class AbstractWord extends AbstractAdapter
             $value = $value[$name];
         }
 
-        if (!isset($value['input'])) {
+        if (! isset($value['input'])) {
             $this->error(self::MISSING_VALUE);
             return false;
         }
         $input = strtolower($value['input']);
         $this->setValue($input);
 
-        if (!isset($value['id'])) {
+        if (! isset($value['id'])) {
             $this->error(self::MISSING_ID);
             return false;
         }
