@@ -150,10 +150,10 @@ All of the above options may be passed to the constructor by simply removing the
 The `Zend\Captcha\ReCaptcha` adapter uses [`Zend\Service\ReCaptcha\ReCaptcha`](https://github.com/zendframework/ZendService_ReCaptcha)
 to generate and validate CAPTCHAs.  It exposes the following methods:
 
-- `setPrivKey($key)` and `getPrivKey()` allow you to specify the private key to
+- `setSecretKey($key)` and `getSecretKey()` allow you to specify the secret key to
   use for the ReCaptcha service. This must be specified during construction,
   although it may be overridden at any point.
-- `setPubKey($key)` and `getPubKey()` allow you to specify the public key to use
+- `setSiteKey($key)` and `getSiteKey()` allow you to specify the site key to use
   with the ReCaptcha service. This must be specified during construction,
   although it may be overridden at any point.
 - `setService(ZendService\ReCaptcha\ReCaptcha $service)` and `getService()`
