@@ -21,14 +21,6 @@ use ZendService\ReCaptcha\ReCaptcha as ReCaptchaService;
  */
 class ReCaptcha extends AbstractAdapter
 {
-    /**@+
-     * ReCaptcha Field names
-     * @var string
-     */
-    protected $CHALLENGE = 'recaptcha_challenge_field';
-    protected $RESPONSE  = 'recaptcha_response_field';
-    /**@-*/
-
     /**
      * Recaptcha service object
      *
@@ -65,50 +57,50 @@ class ReCaptcha extends AbstractAdapter
     protected $messageTemplates = [
         self::MISSING_VALUE => 'Missing captcha fields',
         self::ERR_CAPTCHA   => 'Failed to validate captcha',
-        self::BAD_CAPTCHA   => 'Captcha value is wrong: %value%',
+        self::BAD_CAPTCHA   => 'Captcha value is wrong',
     ];
 
     /**
-     * Retrieve ReCaptcha Private key
+     * Retrieve ReCaptcha Secret key
      *
      * @return string
      */
-    public function getPrivkey()
+    public function getSecretKey()
     {
-        return $this->getService()->getPrivateKey();
+        return $this->getService()->getSecretKey();
     }
 
     /**
-     * Retrieve ReCaptcha Public key
+     * Retrieve ReCaptcha Site key
      *
      * @return string
      */
-    public function getPubkey()
+    public function getSiteKey()
     {
-        return $this->getService()->getPublicKey();
+        return $this->getService()->getSiteKey();
     }
 
     /**
-     * Set ReCaptcha Private key
+     * Set ReCaptcha private key
      *
-     * @param  string $privkey
+     * @param  string $secretKey
      * @return ReCaptcha
      */
-    public function setPrivkey($privkey)
+    public function setSecretKey($secretKey)
     {
-        $this->getService()->setPrivateKey($privkey);
+        $this->getService()->setSecretKey($secretKey);
         return $this;
     }
 
     /**
-     * Set ReCaptcha public key
+     * Set ReCaptcha site key
      *
-     * @param  string $pubkey
+     * @param  string $siteKey
      * @return ReCaptcha
      */
-    public function setPubkey($pubkey)
+    public function setSiteKey($siteKey)
     {
-        $this->getService()->setPublicKey($pubkey);
+        $this->getService()->setSiteKey($siteKey);
         return $this;
     }
 
@@ -126,11 +118,11 @@ class ReCaptcha extends AbstractAdapter
         parent::__construct($options);
 
         if (!empty($options)) {
-            if (array_key_exists('private_key', $options)) {
-                $this->getService()->setPrivateKey($options['private_key']);
+            if (array_key_exists('secret_key', $options)) {
+                $this->getService()->setSecretKey($options['secret_key']);
             }
-            if (array_key_exists('public_key', $options)) {
-                $this->getService()->setPublicKey($options['public_key']);
+            if (array_key_exists('site_key', $options)) {
+                $this->getService()->setSiteKey($options['site_key']);
             }
             $this->setOptions($options);
         }
@@ -194,7 +186,11 @@ class ReCaptcha extends AbstractAdapter
     }
 
     /**
-     * Validate captcha
+     * Validate captcha.
+     *
+     * The value should contain the name of the key within the context that
+     * contains the ReCaptcha data. The default within the ReCaptcha service
+     * for this is "g-recaptcha-response"
      *
      * @see    \Zend\Validator\ValidatorInterface::isValid()
      * @param  mixed $value
@@ -203,32 +199,21 @@ class ReCaptcha extends AbstractAdapter
      */
     public function isValid($value, $context = null)
     {
-        if (!is_array($value) && !is_array($context)) {
-            $this->error(self::MISSING_VALUE);
-            return false;
-        }
-
-        if (!is_array($value) && is_array($context)) {
-            $value = $context;
-        }
-
-        if (empty($value[$this->CHALLENGE]) || empty($value[$this->RESPONSE])) {
+        if (empty($value) && !is_array($context)) {
             $this->error(self::MISSING_VALUE);
             return false;
         }
 
         $service = $this->getService();
 
-        $res = $service->verify($value[$this->CHALLENGE], $value[$this->RESPONSE]);
-
+        $res = $service->verify($context[$value]);
         if (!$res) {
             $this->error(self::ERR_CAPTCHA);
             return false;
         }
 
         if (!$res->isValid()) {
-            $this->error(self::BAD_CAPTCHA, $res->getErrorCode());
-            $service->setParam('error', $res->getErrorCode());
+            $this->error(self::BAD_CAPTCHA);
             return false;
         }
 
