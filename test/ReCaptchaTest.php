@@ -25,7 +25,7 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        if (!getenv('TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT')) {
+        if (! getenv('TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT to test PDF render');
         }
 
@@ -117,7 +117,7 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     /** @group ZF-7654 */
     public function testConstructorShouldAllowSettingThemeOptionOnServiceObject()
     {
-        $options = ['theme'=>'dark'];
+        $options = ['theme' => 'dark'];
         $captcha = new ReCaptcha($options);
         $this->assertEquals('dark', $captcha->getService()->getOption('theme'));
     }

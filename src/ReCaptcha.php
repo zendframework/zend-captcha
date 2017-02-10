@@ -117,7 +117,7 @@ class ReCaptcha extends AbstractAdapter
 
         parent::__construct($options);
 
-        if (!empty($options)) {
+        if (! empty($options)) {
             if (array_key_exists('secret_key', $options)) {
                 $this->getService()->setSecretKey($options['secret_key']);
             }
@@ -199,7 +199,7 @@ class ReCaptcha extends AbstractAdapter
      */
     public function isValid($value, $context = null)
     {
-        if (empty($value) && !is_array($context)) {
+        if (empty($value) && ! is_array($context)) {
             $this->error(self::MISSING_VALUE);
             return false;
         }
@@ -207,12 +207,12 @@ class ReCaptcha extends AbstractAdapter
         $service = $this->getService();
 
         $res = $service->verify($context[$value]);
-        if (!$res) {
+        if (! $res) {
             $this->error(self::ERR_CAPTCHA);
             return false;
         }
 
-        if (!$res->isValid()) {
+        if (! $res->isValid()) {
             $this->error(self::BAD_CAPTCHA);
             return false;
         }
