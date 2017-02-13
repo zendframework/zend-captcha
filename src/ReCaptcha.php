@@ -105,6 +105,52 @@ class ReCaptcha extends AbstractAdapter
     }
 
     /**
+     * Retrieve ReCaptcha secret key (BC version)
+     *
+     * @return string
+     * @deprecated
+     */
+    public function getPrivKey()
+    {
+        return $this->getSecretKey();
+    }
+
+    /**
+     * Retrieve ReCaptcha site key (BC version)
+     *
+     * @return string
+     * @deprecated
+     */
+    public function getPubKey()
+    {
+        return $this->getSiteKey();
+    }
+
+    /**
+     * Set ReCaptcha secret key (BC version)
+     *
+     * @param  string $key
+     * @return ReCaptcha
+     * @deprecated
+     */
+    public function setPrivKey($key)
+    {
+        return $this->setSecretKey($key);
+    }
+
+    /**
+     * Set ReCaptcha site key (BC version)
+     *
+     * @param  string $key
+     * @return ReCaptcha
+     * @deprecated
+     */
+    public function setPubKey($key)
+    {
+        return $this->setSiteKey($key);
+    }
+
+    /**
      * Constructor
      *
      * @param  null|array|Traversable $options
@@ -124,6 +170,15 @@ class ReCaptcha extends AbstractAdapter
             if (array_key_exists('site_key', $options)) {
                 $this->getService()->setSiteKey($options['site_key']);
             }
+
+            // Support pubKey and pubKey for BC
+            if (array_key_exists('privKey', $options)) {
+                $this->getService()->setSecretKey($options['privKey']);
+            }
+            if (array_key_exists('pubKey', $options)) {
+                $this->getService()->setSiteKey($options['pubKey']);
+            }
+
             $this->setOptions($options);
         }
     }

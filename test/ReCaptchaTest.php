@@ -101,6 +101,21 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
     }
 
+    public function testSetAndGetSiteAndSecretKeysViaBCMethods()
+    {
+        $captcha = new ReCaptcha();
+        $siteKey = 'siteKey';
+        $secretKey = 'secretKey';
+        $captcha->setPubKey($siteKey)
+                ->setPrivKey($secretKey);
+
+        $this->assertSame($siteKey, $captcha->getPubKey());
+        $this->assertSame($secretKey, $captcha->getPrivKey());
+
+        $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
+    }
+
     public function testSetAndGetRecaptchaServiceSiteAndSecretKeysFromOptions()
     {
         $siteKey = 'siteKey';
@@ -108,6 +123,19 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
         $options = [
             'site_key' => $siteKey,
             'secret_key' => $secretKey
+        ];
+        $captcha = new ReCaptcha($options);
+        $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
+    }
+
+    public function testSetAndGetRecaptchaServiceSiteAndSecretKeysFromOptionsWithBCNames()
+    {
+        $siteKey = 'siteKey';
+        $secretKey = 'secretKey';
+        $options = [
+            'pubKey' => $siteKey,
+            'privKey' => $secretKey
         ];
         $captcha = new ReCaptcha($options);
         $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
