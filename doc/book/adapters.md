@@ -158,3 +158,17 @@ to generate and validate CAPTCHAs.  It exposes the following methods:
   although it may be overridden at any point.
 - `setService(ZendService\ReCaptcha\ReCaptcha $service)` and `getService()`
   allow you to set and get the ReCaptcha service object.
+
+When constructing `Zend\Captcha\ReCaptcha`, you can use the same set of keys
+to the `$options` array as supported by [`Zend\Service\ReCaptcha\ReCaptcha`](https://github.com/zendframework/ZendService_ReCaptcha).
+
+### Updating from v2 to v3 of this adapter
+
+As this adapter takes the same option keys as [`Zend\Service\ReCaptcha\ReCaptcha`](https://github.com/zendframework/ZendService_ReCaptcha) which supports Recaptcha API v2, this 
+component no longer supports the `ssl`, `xhtml` and `lang` keys in the `$options`
+array that is passed to the constructor.
+
+The options keys `pubKey` and `privKey` and the getters and setters for these
+keys are supported in this version, but are deprecated.
+
+
