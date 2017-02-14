@@ -48,13 +48,16 @@ matrix:
     - php: 7
       env:
         - DEPS=latest
-    - php: hhvm 
+    - php: 7.1
+      env:
+        - DEPS=latest
+    - php: hhvm
       env:
         - DEPS=lowest
-    - php: hhvm 
+    - php: hhvm
       env:
         - DEPS=locked
-    - php: hhvm 
+    - php: hhvm
       env:
         - DEPS=latest
   allow_failures:

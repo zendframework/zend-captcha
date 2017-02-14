@@ -101,7 +101,7 @@ abstract class AbstractAdapter extends AbstractValidator implements AdapterInter
      */
     public function setOptions($options = [])
     {
-        if (!is_array($options) && !$options instanceof Traversable) {
+        if (! is_array($options) && ! $options instanceof Traversable) {
             throw new Exception\InvalidArgumentException(__METHOD__ . ' expects an array or Traversable');
         }
 

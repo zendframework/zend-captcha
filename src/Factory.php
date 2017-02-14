@@ -38,7 +38,7 @@ abstract class Factory
             $options = ArrayUtils::iteratorToArray($options);
         }
 
-        if (!is_array($options)) {
+        if (! is_array($options)) {
             throw new Exception\InvalidArgumentException(sprintf(
                 '%s expects an array or Traversable argument; received "%s"',
                 __METHOD__,
@@ -46,7 +46,7 @@ abstract class Factory
             ));
         }
 
-        if (!isset($options['class'])) {
+        if (! isset($options['class'])) {
             throw new Exception\DomainException(sprintf(
                 '%s expects a "class" attribute in the options; none provided',
                 __METHOD__
@@ -57,7 +57,7 @@ abstract class Factory
         if (isset(static::$classMap[strtolower($class)])) {
             $class = static::$classMap[strtolower($class)];
         }
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             throw new Exception\DomainException(sprintf(
                 '%s expects the "class" attribute to resolve to an existing class; received "%s"',
                 __METHOD__,
@@ -72,7 +72,7 @@ abstract class Factory
         }
         $captcha = new $class($options);
 
-        if (!$captcha instanceof AdapterInterface) {
+        if (! $captcha instanceof AdapterInterface) {
             throw new Exception\DomainException(sprintf(
                 '%s expects the "class" attribute to resolve to a valid %s instance; received "%s"',
                 __METHOD__,
