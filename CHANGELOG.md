@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Added
 
-- Nothing.
+- [#29](https://github.com/zendframework/zend-captcha/pull/29) adds support for
+  zend-recaptch v3.
+
 
 ### Deprecated
 
