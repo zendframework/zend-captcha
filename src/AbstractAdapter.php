@@ -58,7 +58,7 @@ abstract class AbstractAdapter extends AbstractValidator implements AdapterInter
      * Set name
      *
      * @param string $name
-     * @return AbstractAdapter
+     * @return AbstractAdapter Provides a fluent interface
      */
     public function setName($name)
     {
@@ -71,7 +71,7 @@ abstract class AbstractAdapter extends AbstractValidator implements AdapterInter
      *
      * @param  string $key
      * @param  string $value
-     * @return AbstractAdapter
+     * @return AbstractAdapter Provides a fluent interface
      */
     public function setOption($key, $value)
     {
@@ -97,7 +97,7 @@ abstract class AbstractAdapter extends AbstractValidator implements AdapterInter
      *
      * @param  array|Traversable $options
      * @throws Exception\InvalidArgumentException
-     * @return AbstractAdapter
+     * @return AbstractAdapter Provides a fluent interface
      */
     public function setOptions($options = [])
     {

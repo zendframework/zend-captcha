@@ -84,7 +84,7 @@ class ReCaptcha extends AbstractAdapter
      * Set ReCaptcha private key
      *
      * @param  string $secretKey
-     * @return ReCaptcha
+     * @return ReCaptcha Provides a fluent interface
      */
     public function setSecretKey($secretKey)
     {
@@ -96,7 +96,7 @@ class ReCaptcha extends AbstractAdapter
      * Set ReCaptcha site key
      *
      * @param  string $siteKey
-     * @return ReCaptcha
+     * @return ReCaptcha Provides a fluent interface
      */
     public function setSiteKey($siteKey)
     {
@@ -130,7 +130,7 @@ class ReCaptcha extends AbstractAdapter
      * Set ReCaptcha secret key (BC version)
      *
      * @param  string $key
-     * @return ReCaptcha
+     * @return ReCaptcha Provides a fluent interface
      * @deprecated
      */
     public function setPrivKey($key)
@@ -142,7 +142,7 @@ class ReCaptcha extends AbstractAdapter
      * Set ReCaptcha site key (BC version)
      *
      * @param  string $key
-     * @return ReCaptcha
+     * @return ReCaptcha Provides a fluent interface
      * @deprecated
      */
     public function setPubKey($key)
@@ -187,7 +187,7 @@ class ReCaptcha extends AbstractAdapter
      * Set service object
      *
      * @param  ReCaptchaService $service
-     * @return ReCaptcha
+     * @return ReCaptcha Provides a fluent interface
      */
     public function setService(ReCaptchaService $service)
     {
@@ -213,7 +213,7 @@ class ReCaptcha extends AbstractAdapter
      *
      * @param  string $key
      * @param  mixed $value
-     * @return ReCaptcha
+     * @return ReCaptcha Provides a fluent interface
      */
     public function setOption($key, $value)
     {

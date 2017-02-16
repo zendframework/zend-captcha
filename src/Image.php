@@ -260,7 +260,7 @@ class Image extends AbstractWord
 
     /**
      * @param string $startImage
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setStartImage($startImage)
     {
@@ -270,7 +270,7 @@ class Image extends AbstractWord
 
     /**
      * @param int $dotNoiseLevel
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setDotNoiseLevel($dotNoiseLevel)
     {
@@ -280,7 +280,7 @@ class Image extends AbstractWord
 
     /**
      * @param int $lineNoiseLevel
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setLineNoiseLevel($lineNoiseLevel)
     {
@@ -292,7 +292,7 @@ class Image extends AbstractWord
      * Set captcha expiration
      *
      * @param  int $expiration
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setExpiration($expiration)
     {
@@ -304,7 +304,7 @@ class Image extends AbstractWord
      * Set garbage collection frequency
      *
      * @param  int $gcFreq
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setGcFreq($gcFreq)
     {
@@ -316,7 +316,7 @@ class Image extends AbstractWord
      * Set captcha font
      *
      * @param  string $font
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setFont($font)
     {
@@ -328,7 +328,7 @@ class Image extends AbstractWord
      * Set captcha font size
      *
      * @param  int $fsize
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setFontSize($fsize)
     {
@@ -340,7 +340,7 @@ class Image extends AbstractWord
      * Set captcha image height
      *
      * @param  int $height
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setHeight($height)
     {
@@ -352,7 +352,7 @@ class Image extends AbstractWord
      * Set captcha image storage directory
      *
      * @param  string $imgDir
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setImgDir($imgDir)
     {
@@ -364,7 +364,7 @@ class Image extends AbstractWord
      * Set captcha image base URL
      *
      * @param  string $imgUrl
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setImgUrl($imgUrl)
     {
@@ -374,7 +374,7 @@ class Image extends AbstractWord
 
     /**
      * @param string $imgAlt
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setImgAlt($imgAlt)
     {
@@ -386,7 +386,7 @@ class Image extends AbstractWord
      * Set captcha image filename suffix
      *
      * @param  string $suffix
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setSuffix($suffix)
     {
@@ -398,7 +398,7 @@ class Image extends AbstractWord
      * Set captcha image width
      *
      * @param  int $width
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setWidth($width)
     {

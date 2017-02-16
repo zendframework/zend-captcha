@@ -125,7 +125,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set session class for persistence
      *
      * @param  string $sessionClass
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     public function setSessionClass($sessionClass)
     {
@@ -147,7 +147,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set word length of captcha
      *
      * @param int $wordlen
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     public function setWordlen($wordlen)
     {
@@ -172,7 +172,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set captcha identifier
      *
      * @param string $id
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     protected function setId($id)
     {
@@ -184,7 +184,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set timeout for session token
      *
      * @param  int $ttl
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     public function setTimeout($ttl)
     {
@@ -206,7 +206,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Sets if session should be preserved on generate()
      *
      * @param bool $keepSession Should session be kept on generate()?
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     public function setKeepSession($keepSession)
     {
@@ -228,7 +228,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set if numbers should be included in the pattern
      *
      * @param  bool $useNumbers numbers should be included in the pattern?
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     public function setUseNumbers($useNumbers)
     {
@@ -260,7 +260,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set session namespace object
      *
      * @param  Container $session
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     public function setSession(Container $session)
     {
@@ -289,7 +289,7 @@ abstract class AbstractWord extends AbstractAdapter
      * Set captcha word
      *
      * @param  string $word
-     * @return AbstractWord
+     * @return AbstractWord Provides a fluent interface
      */
     protected function setWord($word)
     {
