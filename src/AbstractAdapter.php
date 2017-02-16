@@ -18,7 +18,6 @@ use Zend\Validator\AbstractValidator;
  * Provides some utility functionality to build on
  */
 abstract class AbstractAdapter extends AbstractValidator implements AdapterInterface
-
 {
     /**
      * Captcha name
