@@ -16,7 +16,6 @@
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin" rel="stylesheet" type="text/css">
     <link href="//fonts.googleapis.com/css?family=Libre+Baskerville:400,400italic,700&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     <link href="../css/base.css" rel="stylesheet">
-    <link href="../css/zf-web.css" rel="stylesheet">
     <link href="../css/zf.css" rel="stylesheet">
     <link href="../css/prism-zf.css" rel="stylesheet">
 
@@ -57,7 +56,7 @@
 
             <!-- Main title -->
             <span class="navbar-brand">
-              <a class="logo-link" href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Zend Framework"><img src="../img/zf-logo-mark.svg" height="28" alt="Zend Framework" /></a>
+              <a class="logo-link" href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Zend Framework"><img src="../img/zf-logo-mark.png" height="28" alt="Zend Framework" /></a>
               <a href="..">zend-captcha</a>
             </span>
         </div>
@@ -123,7 +122,7 @@
 </div>
 
     <!-- content:begin -->
-    <div id="page-top" class="container docs">
+    <div class="container">
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
@@ -159,7 +158,7 @@
         <div class="col-md-9" role="main">
 
 <ol class="breadcrumb" role="navigation" aria-label="breadcrumbs navigation">
-  <li><a href="..">zend-captcha</a> &raquo;</li>
+  <li><a href="..">Docs</a> &raquo;</li>
   
     
   
@@ -171,7 +170,7 @@
 <code>Zend\Captcha\AdapterInterface</code>, and provides several implementations.</p>
 <h2 id="the-adapterinterface">The AdapterInterface</h2>
 <p>All CAPTCHA adapters implement <code>Zend\Captcha\AdapterInterface</code>:</p>
-<pre class="codehilite"><code class="language-php">namespace Zend\Captcha;
+<pre class="codehilite"><code class="language-php linenums">namespace Zend\Captcha;
 
 use Zend\Validator\ValidatorInterface;
 
@@ -186,7 +185,6 @@ interface AdapterInterface extends ValidatorInterface
     // Get helper name used for rendering this CAPTCHA type
     public function getHelperName();
 }</code></pre>
-
 
 <p>The <code>name</code> setter and getter are used to specify and retrieve the CAPTCHA identifier.</p>
 <p>The most interesting method is <code>generate()</code>, which is used to create the CAPTCHA
@@ -297,15 +295,23 @@ exposes the following methods:</p>
 <p>The <code>Zend\Captcha\ReCaptcha</code> adapter uses <a href="https://github.com/zendframework/ZendService_ReCaptcha"><code>Zend\Service\ReCaptcha\ReCaptcha</code></a>
 to generate and validate CAPTCHAs.  It exposes the following methods:</p>
 <ul>
-<li><code>setPrivKey($key)</code> and <code>getPrivKey()</code> allow you to specify the private key to
+<li><code>setSecretKey($key)</code> and <code>getSecretKey()</code> allow you to specify the secret key to
   use for the ReCaptcha service. This must be specified during construction,
   although it may be overridden at any point.</li>
-<li><code>setPubKey($key)</code> and <code>getPubKey()</code> allow you to specify the public key to use
+<li><code>setSiteKey($key)</code> and <code>getSiteKey()</code> allow you to specify the site key to use
   with the ReCaptcha service. This must be specified during construction,
   although it may be overridden at any point.</li>
 <li><code>setService(ZendService\ReCaptcha\ReCaptcha $service)</code> and <code>getService()</code>
   allow you to set and get the ReCaptcha service object.</li>
 </ul>
+<p>When constructing <code>Zend\Captcha\ReCaptcha</code>, you can use the same set of keys
+to the <code>$options</code> array as supported by <a href="https://github.com/zendframework/ZendService_ReCaptcha"><code>Zend\Service\ReCaptcha\ReCaptcha</code></a>.</p>
+<h3 id="updating-from-v2-to-v3-of-this-adapter">Updating from v2 to v3 of this adapter</h3>
+<p>As this adapter takes the same option keys as <a href="https://github.com/zendframework/ZendService_ReCaptcha"><code>Zend\Service\ReCaptcha\ReCaptcha</code></a> which supports Recaptcha API v2, this 
+component no longer supports the <code>ssl</code>, <code>xhtml</code> and <code>lang</code> keys in the <code>$options</code>
+array that is passed to the constructor.</p>
+<p>The options keys <code>pubKey</code> and <code>privKey</code> and the getters and setters for these
+keys are supported in this version, but are deprecated.</p>
 
 <hr />
 
@@ -325,49 +331,13 @@ to generate and validate CAPTCHAs.  It exposes the following methods:</p>
     </div>
     <!-- content:end -->
 
-    <div id="footerwrap">
-    <div class="container">
-        <div class="row site-map">
-            <div class="col-lg-3">
-              <p>
-                <strong>Zend Framework</strong><br />
-                <a href="http://framework.zend.com/">framework.zend.com</a><br />
-                <a href="https://docs.zendframework.com">docs.zendframework.com</a><br />
-                <a href="https://packages.zendframework.com">packages.zendframework.com</a><br />
-                <a href="https://apigility.org">apigility.org</a><br />
-              </p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12 centered">
-                <a class="back-to-top" href="#page-top"><i class="fa fa-chevron-circle-up fa-4" aria-hidden="true"></i></a>
-            </div>
-        </div>
-
-        <div class="spacing"></div>
-
-        <div class="row">
-            <div class="col-lg-8">
-                <h4>Copyright</h4>
-                <div class="hline-w"></div>
-
-                <p>&copy; 2006-2016 by <a href="http://www.zend.com">Zend</a>, a <a href="http://www.roguewave.com/">Rogue Wave Company</a>.</p>
-            </div>
-
-            <div class="col-lg-4">
-                <h4>Contacts</h4>
-                <div class="hline-w"></div>
-                <p>
-                    <a href="irc://irc.freenode.net/zftalk" class="btn-social btn-outline" alt="IRC" title="IRC"><i class="fa fa-comment"></i></a>
-                    <a href="https://github.com/zendframework" class="btn-social btn-outline" alt="Github" title="Github"><i class="fa fa-github"></i></a>
-                    <a href="https://twitter.com/zfdevteam" class="btn-social btn-outline" alt="Twitter" title="Twitter"><i class="fa fa-twitter"></i></a>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-
+    <footer class="col-md-12 text-center">
+        <hr>
+        <p>
+        <small>Copyright (c) 2016 <a href="http://www.zend.com/">Zend Technologies USA Inc.</a><br></small>
+        </p>
+        <p><small><a href="http://framework.zend.com">Learn more about Zend Framework</a></small></p>
+    </footer>
 
     <script src="../js/jquery-1.10.2.min.js"></script>
     <script src="../js/bootstrap-3.0.3.min.js"></script>
@@ -407,7 +377,7 @@ to generate and validate CAPTCHAs.  It exposes the following methods:</p>
     <div class="zf-components">
   <div class="zf-components-grid">
     <div class="zf-logo">
-      <a href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="../img/zf-logo-mark.svg" alt="Zend Framework" width="250" /></a>
+      <a href="http://framework.zend.com" data-toggle="tooltip" data-placement="bottom" title="Go to the ZF homepage"><img src="http://framework.zend.com/images/logos/zf-logo-mark.png" alt="Zend Framework" width="250" /></a>
     </div>
 
     <div class="component-list"></div>
@@ -512,7 +482,7 @@ to generate and validate CAPTCHAs.  It exposes the following methods:</p>
     // Fetch the component list and display it.
     function loadComponentList () {
       $.ajax({
-        url: "//docs.zendframework.com/zf-mkdoc-theme/scripts/zf-component-list.json",
+        url: "//zendframework.github.io/zf-mkdoc-theme/scripts/zf-component-list.json",
         dataType: "text json",
         success: parseComponentList,
         error: function (e) {
