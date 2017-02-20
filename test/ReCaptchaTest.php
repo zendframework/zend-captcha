@@ -25,7 +25,7 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        if (!getenv('TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT')) {
+        if (! getenv('TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT')) {
             $this->markTestSkipped('Enable TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT to test PDF render');
         }
 
@@ -41,28 +41,39 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     public function testConstructorShouldSetOptions()
     {
         $options = [
-            'privKey' => 'privateKey',
-            'pubKey'  => 'publicKey',
-            'ssl'     => true,
-            'xhtml'   => true,
-            'lang'    => null,
-            'theme'   => 'red',
+            'secret_key' => 'secretKey',
+            'site_key'  => 'siteKey',
+            'size' => 'a',
+            'theme' => 'b',
+            'type' => 'c',
+            'tabindex' => 'd',
+            'callback' => 'e',
+            'expired-callback' => 'f',
+            'hl' => 'g',
+            'noscript' => 'h',
         ];
         $captcha = new ReCaptcha($options);
-        $test    = $captcha->getOptions();
-        $compare = ['privKey' => $options['privKey'], 'pubKey' => $options['pubKey']];
-        $this->assertEquals($compare, $test);
-
         $service = $captcha->getService();
+
+        // have params been stored correctly?
         $test = $service->getParams();
-        $compare = ['ssl' => $options['ssl'], 'xhtml' => $options['xhtml']];
+        $compare = ['noscript' => $options['noscript']];
         foreach ($compare as $key => $value) {
             $this->assertArrayHasKey($key, $test);
             $this->assertSame($value, $test[$key]);
         }
 
+        // have options been stored correctly?
         $test = $service->getOptions();
-        $compare = ['lang' => $options['lang'], 'theme' => $options['theme']];
+        $compare = [
+            'size' => $options['size'],
+            'theme' => $options['theme'],
+            'type' => $options['type'],
+            'tabindex' => $options['tabindex'],
+            'callback' => $options['callback'],
+            'expired-callback' => $options['expired-callback'],
+            'hl' => $options['hl'],
+        ];
         $this->assertEquals($compare, $test);
     }
 
@@ -75,64 +86,76 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($captcha->getService(), $try);
     }
 
-    public function testSetAndGetPublicAndPrivateKeys()
+    public function testSetAndGetSiteAndSecretKeys()
     {
         $captcha = new ReCaptcha();
-        $pubKey = 'pubKey';
-        $privKey = 'privKey';
-        $captcha->setPubkey($pubKey)
-                ->setPrivkey($privKey);
+        $siteKey = 'siteKey';
+        $secretKey = 'secretKey';
+        $captcha->setSiteKey($siteKey)
+                ->setSecretKey($secretKey);
 
-        $this->assertSame($pubKey, $captcha->getPubkey());
-        $this->assertSame($privKey, $captcha->getPrivkey());
+        $this->assertSame($siteKey, $captcha->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getSecretKey());
 
-        $this->assertSame($pubKey, $captcha->getService()->getPublicKey());
-        $this->assertSame($privKey, $captcha->getService()->getPrivateKey());
+        $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
     }
 
-    public function testSetAndGetRecaptchaServicePublicAndPrivateKeysFromOptions()
+    public function testSetAndGetSiteAndSecretKeysViaBCMethods()
     {
-        $publicKey = 'publicKey';
-        $privateKey = 'privateKey';
+        $captcha = new ReCaptcha();
+        $siteKey = 'siteKey';
+        $secretKey = 'secretKey';
+        $captcha->setPubKey($siteKey)
+                ->setPrivKey($secretKey);
+
+        $this->assertSame($siteKey, $captcha->getPubKey());
+        $this->assertSame($secretKey, $captcha->getPrivKey());
+
+        $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
+    }
+
+    public function testSetAndGetRecaptchaServiceSiteAndSecretKeysFromOptions()
+    {
+        $siteKey = 'siteKey';
+        $secretKey = 'secretKey';
         $options = [
-            'public_key' => $publicKey,
-            'private_key' => $privateKey
+            'site_key' => $siteKey,
+            'secret_key' => $secretKey
         ];
         $captcha = new ReCaptcha($options);
-        $this->assertSame($publicKey, $captcha->getService()->getPublicKey());
-        $this->assertSame($privateKey, $captcha->getService()->getPrivateKey());
+        $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
     }
 
-    /** @group ZF-7654 */
-    public function testConstructorShouldAllowSettingLangOptionOnServiceObject()
+    public function testSetAndGetRecaptchaServiceSiteAndSecretKeysFromOptionsWithBCNames()
     {
-        $options = ['lang'=>'fr'];
+        $siteKey = 'siteKey';
+        $secretKey = 'secretKey';
+        $options = [
+            'pubKey' => $siteKey,
+            'privKey' => $secretKey
+        ];
         $captcha = new ReCaptcha($options);
-        $this->assertEquals('fr', $captcha->getService()->getOption('lang'));
+        $this->assertSame($siteKey, $captcha->getService()->getSiteKey());
+        $this->assertSame($secretKey, $captcha->getService()->getSecretKey());
     }
 
     /** @group ZF-7654 */
     public function testConstructorShouldAllowSettingThemeOptionOnServiceObject()
     {
-        $options = ['theme'=>'black'];
+        $options = ['theme' => 'dark'];
         $captcha = new ReCaptcha($options);
-        $this->assertEquals('black', $captcha->getService()->getOption('theme'));
-    }
-
-    /** @group ZF-7654 */
-    public function testAllowsSettingLangOptionOnServiceObject()
-    {
-        $captcha = new ReCaptcha;
-        $captcha->setOption('lang', 'fr');
-        $this->assertEquals('fr', $captcha->getService()->getOption('lang'));
+        $this->assertEquals('dark', $captcha->getService()->getOption('theme'));
     }
 
     /** @group ZF-7654 */
     public function testAllowsSettingThemeOptionOnServiceObject()
     {
         $captcha = new ReCaptcha;
-        $captcha->setOption('theme', 'black');
-        $this->assertEquals('black', $captcha->getService()->getOption('theme'));
+        $captcha->setOption('theme', 'dark');
+        $this->assertEquals('dark', $captcha->getService()->getOption('theme'));
     }
 
     public function testUsesReCaptchaHelper()

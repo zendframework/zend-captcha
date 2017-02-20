@@ -27,14 +27,14 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        if (!extension_loaded('gd')) {
+        if (! extension_loaded('gd')) {
             $this->markTestSkipped('The GD extension is not available.');
             return;
         }
-        if (!function_exists("imagepng")) {
+        if (! function_exists("imagepng")) {
             $this->markTestSkipped("Image CAPTCHA requires PNG support");
         }
-        if (!function_exists("imageftbbox")) {
+        if (! function_exists("imageftbbox")) {
             $this->markTestSkipped("Image CAPTCHA requires FT fonts support");
         }
 
@@ -43,7 +43,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->testDir = $this->getTmpDir() . '/ZF_test_images';
-        if (!is_dir($this->testDir)) {
+        if (! is_dir($this->testDir)) {
             @mkdir($this->testDir);
         }
 
@@ -64,7 +64,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
     {
         // remove chaptcha images
         foreach (new DirectoryIterator($this->testDir) as $file) {
-            if (!$file->isDot() && !$file->isDir()) {
+            if (! $file->isDot() && ! $file->isDir()) {
                 unlink($file->getPathname());
             }
         }
@@ -127,7 +127,7 @@ class ImageTest extends \PHPUnit_Framework_TestCase
      */
     public function testCaptchaImageCleanupOnlyCaptchaFilesIdentifiedByTheirSuffix()
     {
-        if (!getenv('TESTS_ZEND_CAPTCHA_GC')) {
+        if (! getenv('TESTS_ZEND_CAPTCHA_GC')) {
             $this->markTestSkipped('Enable TESTS_ZEND_CAPTCHA_GC to run this test');
         }
         $this->captcha->generate();

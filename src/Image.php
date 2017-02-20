@@ -121,15 +121,15 @@ class Image extends AbstractWord
      */
     public function __construct($options = null)
     {
-        if (!extension_loaded("gd")) {
+        if (! extension_loaded("gd")) {
             throw new Exception\ExtensionNotLoadedException("Image CAPTCHA requires GD extension");
         }
 
-        if (!function_exists("imagepng")) {
+        if (! function_exists("imagepng")) {
             throw new Exception\ExtensionNotLoadedException("Image CAPTCHA requires PNG support");
         }
 
-        if (!function_exists("imageftbbox")) {
+        if (! function_exists("imageftbbox")) {
             throw new Exception\ExtensionNotLoadedException("Image CAPTCHA requires FT fonts support");
         }
 
@@ -260,7 +260,7 @@ class Image extends AbstractWord
 
     /**
      * @param string $startImage
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setStartImage($startImage)
     {
@@ -270,7 +270,7 @@ class Image extends AbstractWord
 
     /**
      * @param int $dotNoiseLevel
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setDotNoiseLevel($dotNoiseLevel)
     {
@@ -280,7 +280,7 @@ class Image extends AbstractWord
 
     /**
      * @param int $lineNoiseLevel
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setLineNoiseLevel($lineNoiseLevel)
     {
@@ -292,7 +292,7 @@ class Image extends AbstractWord
      * Set captcha expiration
      *
      * @param  int $expiration
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setExpiration($expiration)
     {
@@ -304,7 +304,7 @@ class Image extends AbstractWord
      * Set garbage collection frequency
      *
      * @param  int $gcFreq
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setGcFreq($gcFreq)
     {
@@ -316,7 +316,7 @@ class Image extends AbstractWord
      * Set captcha font
      *
      * @param  string $font
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setFont($font)
     {
@@ -328,7 +328,7 @@ class Image extends AbstractWord
      * Set captcha font size
      *
      * @param  int $fsize
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setFontSize($fsize)
     {
@@ -340,7 +340,7 @@ class Image extends AbstractWord
      * Set captcha image height
      *
      * @param  int $height
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setHeight($height)
     {
@@ -352,7 +352,7 @@ class Image extends AbstractWord
      * Set captcha image storage directory
      *
      * @param  string $imgDir
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setImgDir($imgDir)
     {
@@ -364,7 +364,7 @@ class Image extends AbstractWord
      * Set captcha image base URL
      *
      * @param  string $imgUrl
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setImgUrl($imgUrl)
     {
@@ -374,7 +374,7 @@ class Image extends AbstractWord
 
     /**
      * @param string $imgAlt
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setImgAlt($imgAlt)
     {
@@ -386,7 +386,7 @@ class Image extends AbstractWord
      * Set captcha image filename suffix
      *
      * @param  string $suffix
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setSuffix($suffix)
     {
@@ -398,7 +398,7 @@ class Image extends AbstractWord
      * Set captcha image width
      *
      * @param  int $width
-     * @return Image
+     * @return Image Provides a fluent interface
      */
     public function setWidth($width)
     {
@@ -493,7 +493,7 @@ class Image extends AbstractWord
             ErrorHandler::start();
             $img   = imagecreatefrompng($this->startImage);
             $error = ErrorHandler::stop();
-            if (!$img || $error) {
+            if (! $img || $error) {
                 throw new Exception\ImageNotLoadableException(
                     "Can not load start image '{$this->startImage}'",
                     0,
@@ -506,24 +506,24 @@ class Image extends AbstractWord
 
         $textColor = imagecolorallocate($img, 0, 0, 0);
         $bgColor   = imagecolorallocate($img, 255, 255, 255);
-        imagefilledrectangle($img, 0, 0, $w-1, $h-1, $bgColor);
+        imagefilledrectangle($img, 0, 0, $w - 1, $h - 1, $bgColor);
         $textbox = imageftbbox($fsize, 0, $font, $word);
         $x = ($w - ($textbox[2] - $textbox[0])) / 2;
         $y = ($h - ($textbox[7] - $textbox[1])) / 2;
         imagefttext($img, $fsize, 0, $x, $y, $textColor, $font, $word);
 
         // generate noise
-        for ($i=0; $i < $this->dotNoiseLevel; $i++) {
+        for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
             imagefilledellipse($img, mt_rand(0, $w), mt_rand(0, $h), 2, 2, $textColor);
         }
-        for ($i=0; $i < $this->lineNoiseLevel; $i++) {
+        for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
             imageline($img, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w), mt_rand(0, $h), $textColor);
         }
 
         // transformed image
         $img2     = imagecreatetruecolor($w, $h);
         $bgColor = imagecolorallocate($img2, 255, 255, 255);
-        imagefilledrectangle($img2, 0, 0, $w-1, $h-1, $bgColor);
+        imagefilledrectangle($img2, 0, 0, $w - 1, $h - 1, $bgColor);
 
         // apply wave transforms
         $freq1 = $this->randomFreq();
@@ -541,15 +541,15 @@ class Image extends AbstractWord
 
         for ($x = 0; $x < $w; $x++) {
             for ($y = 0; $y < $h; $y++) {
-                $sx = $x + (sin($x*$freq1 + $ph1) + sin($y*$freq3 + $ph3)) * $szx;
-                $sy = $y + (sin($x*$freq2 + $ph2) + sin($y*$freq4 + $ph4)) * $szy;
+                $sx = $x + (sin($x * $freq1 + $ph1) + sin($y * $freq3 + $ph3)) * $szx;
+                $sy = $y + (sin($x * $freq2 + $ph2) + sin($y * $freq4 + $ph4)) * $szy;
 
                 if ($sx < 0 || $sy < 0 || $sx >= $w - 1 || $sy >= $h - 1) {
                     continue;
                 } else {
-                    $color   = (imagecolorat($img, $sx, $sy) >> 16)         & 0xFF;
-                    $colorX  = (imagecolorat($img, $sx + 1, $sy) >> 16)     & 0xFF;
-                    $colorY  = (imagecolorat($img, $sx, $sy + 1) >> 16)     & 0xFF;
+                    $color   = (imagecolorat($img, $sx, $sy) >> 16) & 0xFF;
+                    $colorX  = (imagecolorat($img, $sx + 1, $sy) >> 16) & 0xFF;
+                    $colorY  = (imagecolorat($img, $sx, $sy + 1) >> 16) & 0xFF;
                     $colorXY = (imagecolorat($img, $sx + 1, $sy + 1) >> 16) & 0xFF;
                 }
 
@@ -566,10 +566,10 @@ class Image extends AbstractWord
                     $fracX1 = 1 - $fracX;
                     $fracY1 = 1 - $fracY;
 
-                    $newcolor = $color   * $fracX1 * $fracY1
-                              + $colorX  * $fracX  * $fracY1
-                              + $colorY  * $fracX1 * $fracY
-                              + $colorXY * $fracX  * $fracY;
+                    $newcolor = $color * $fracX1 * $fracY1
+                              + $colorX * $fracX * $fracY1
+                              + $colorY * $fracX1 * $fracY
+                              + $colorXY * $fracX * $fracY;
                 }
 
                 imagesetpixel($img2, $x, $y, imagecolorallocate($img2, $newcolor, $newcolor, $newcolor));
@@ -577,11 +577,11 @@ class Image extends AbstractWord
         }
 
         // generate noise
-        for ($i=0; $i<$this->dotNoiseLevel; $i++) {
+        for ($i = 0; $i < $this->dotNoiseLevel; $i++) {
             imagefilledellipse($img2, mt_rand(0, $w), mt_rand(0, $h), 2, 2, $textColor);
         }
 
-        for ($i=0; $i<$this->lineNoiseLevel; $i++) {
+        for ($i = 0; $i < $this->lineNoiseLevel; $i++) {
             imageline($img2, mt_rand(0, $w), mt_rand(0, $h), mt_rand(0, $w), mt_rand(0, $h), $textColor);
         }
 
@@ -598,14 +598,14 @@ class Image extends AbstractWord
     {
         $expire = time() - $this->getExpiration();
         $imgdir = $this->getImgDir();
-        if (!$imgdir || strlen($imgdir) < 2) {
+        if (! $imgdir || strlen($imgdir) < 2) {
             // safety guard
             return;
         }
 
         $suffixLength = strlen($this->suffix);
         foreach (new DirectoryIterator($imgdir) as $file) {
-            if (!$file->isDot() && !$file->isDir()) {
+            if (! $file->isDot() && ! $file->isDir()) {
                 if (file_exists($file->getPathname()) && $file->getMTime() < $expire) {
                     // only deletes files ending with $this->suffix
                     if (substr($file->getFilename(), -($suffixLength)) == $this->suffix) {
