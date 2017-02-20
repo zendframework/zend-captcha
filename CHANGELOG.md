@@ -2,13 +2,12 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.7.0 - 2017-02-20
+
+## 2.7.1 - TBD
 
 ### Added
 
-- [#29](https://github.com/zendframework/zend-captcha/pull/29) adds support for
-  zend-recaptch v3.
-
+- Nothing.
 
 ### Deprecated
 
@@ -22,11 +21,13 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - Nothing.
 
-## 2.6.1 - TBD
+## 2.7.0 - 2017-02-20
 
 ### Added
 
-- Nothing.
+- [#29](https://github.com/zendframework/zend-captcha/pull/29) adds support for
+  zend-recaptch v3.
+
 
 ### Deprecated
 
