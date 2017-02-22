@@ -260,7 +260,7 @@ class ReCaptcha extends AbstractAdapter
         }
 
         $service = $this->getService();
-        if (array_key_exists($value, $context)) {
+        if ((is_string($value) || is_int($value)) && array_key_exists($value, $context)) {
             $res = $service->verify($context[$value]);
         } else {
             $res = $service->verify($value);
