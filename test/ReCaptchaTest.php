@@ -164,8 +164,9 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
             'site_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SITE_KEY'),
             'secret_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY'),
         ]);
-        $captcha->getService()->setIp('127.0.0.1');
-        $captcha->getService()->setHttpClient($this->getHttpClient());
+        $service = $captcha->getService();
+        $service->setIp('127.0.0.1');
+        $service->setHttpClient($this->getHttpClient());
 
         $response = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
         $value = 'g-recaptcha-response';
@@ -180,8 +181,9 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
             'site_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SITE_KEY'),
             'secret_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY'),
         ]);
-        $captcha->getService()->setIp('127.0.0.1');
-        $captcha->getService()->setHttpClient($this->getHttpClient());
+        $service = $captcha->getService();
+        $service->setIp('127.0.0.1');
+        $service->setHttpClient($this->getHttpClient());
 
         $response = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
         $value = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
