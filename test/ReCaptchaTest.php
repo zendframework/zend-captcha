@@ -190,6 +190,9 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($captcha->isValid($value, $context));
     }
 
+    /**
+     * @return HttpClient
+     */
     private function getHttpClient()
     {
         $socket = new Socket();
