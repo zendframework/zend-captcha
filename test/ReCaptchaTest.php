@@ -10,6 +10,8 @@
 namespace ZendTest\Captcha;
 
 use Zend\Captcha\ReCaptcha;
+use Zend\Http\Client as HttpClient;
+use Zend\Http\Client\Adapter\Socket;
 use ZendService\ReCaptcha\ReCaptcha as ReCaptchaService;
 
 /**
@@ -163,6 +165,7 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
             'secret_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY'),
         ]);
         $captcha->getService()->setIp('127.0.0.1');
+        $captcha->getService()->setHttpClient($this->getHttpClient());
 
         $response = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
         $value = 'g-recaptcha-response';
@@ -178,11 +181,23 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
             'secret_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY'),
         ]);
         $captcha->getService()->setIp('127.0.0.1');
+        $captcha->getService()->setHttpClient($this->getHttpClient());
 
         $response = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
         $value = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
         $context = ['g-recaptcha-response' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE')];
 
         $this->assertTrue($captcha->isValid($value, $context));
+    }
+
+    private function getHttpClient()
+    {
+        $socket = new Socket();
+        $socket->setOptions([
+            'ssltransport' => 'tls',
+        ]);
+        return new HttpClient(null, [
+            'adapter' => $socket,
+        ]);
     }
 }
