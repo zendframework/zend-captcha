@@ -19,7 +19,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#31](https://github.com/zendframework/zend-captcha/pull/31) fixes using the
+  ReCaptcha response as the value parameter to isValid().
 
 ## 2.7.0 - 2017-02-20
 
