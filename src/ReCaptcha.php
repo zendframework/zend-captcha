@@ -260,8 +260,12 @@ class ReCaptcha extends AbstractAdapter
         }
 
         $service = $this->getService();
+        if ((is_string($value) || is_int($value)) && array_key_exists($value, $context)) {
+            $res = $service->verify($context[$value]);
+        } else {
+            $res = $service->verify($value);
+        }
 
-        $res = $service->verify($context[$value]);
         if (! $res) {
             $this->error(self::ERR_CAPTCHA);
             return false;

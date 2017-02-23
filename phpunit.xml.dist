@@ -27,6 +27,11 @@
         <!-- Enable this if you have installed ZendService\ReCaptcha on the
              include_path or via Composer. -->
         <env name="TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT" value="false" />
+        <!-- Change these if you want to use your own keys -->
+        <!-- These are test keys. See: https://developers.google.com/recaptcha/docs/faq -->
+        <env name="TESTS_ZEND_SERVICE_RECAPTCHA_SITE_KEY" value="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"/>
+        <env name="TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY" value="6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"/>
+        <env name="TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE" value="03AI-r6f4PlCfbU_-3HGwscafLbnxjinCf7GKEErJlUHDVF1uJ_SoVebG8gJewkGjNTwLxMZNQPJ4XRTvovB8J6vHLHCVZ1yV_KzJc1Mca6QVZ_6MsNJxYsXa-5NUWTHRvl7XGkju_oPTlxRNDC7DPPkd3eaav0HW1SfdJY1uRd_w5Fkin7KBXz-Eg8oQRSRQ-MplJacQQ3rlKkpEssu1seliTNNidAmuuHWksZwdVAi4ZMyT52BA98_KitLVipT7yiqSka2m8oJZMa9uYb2buNR7X3qnqsJfUc9BxT5lF2HLiX79STktdSAI"/>
 
         <!-- Enable this to test GC operations. These often fail in parallel
              build environments. -->
