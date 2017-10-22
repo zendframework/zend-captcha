@@ -85,6 +85,13 @@ abstract class AbstractWord extends AbstractAdapter
      * @var bool
      */
     protected $keepSession = false;
+    
+    /**
+     * Is using default session?
+     *
+     * @var bool
+     */
+    protected $useDefaultSession = true;
 
     /**#@+
      * Error codes
@@ -250,8 +257,6 @@ abstract class AbstractWord extends AbstractAdapter
                 throw new Exception\InvalidArgumentException("Session class $this->sessionClass not found");
             }
             $this->session = new $this->sessionClass('Zend_Form_Captcha_' . $id);
-            $this->session->setExpirationHops(1, null);
-            $this->session->setExpirationSeconds($this->getTimeout());
         }
         return $this->session;
     }
@@ -265,6 +270,7 @@ abstract class AbstractWord extends AbstractAdapter
     public function setSession(Container $session)
     {
         $this->session = $session;
+        $this->useDefaultSession = false;
         if ($session) {
             $this->keepSession = true;
         }
@@ -294,6 +300,10 @@ abstract class AbstractWord extends AbstractAdapter
     protected function setWord($word)
     {
         $session       = $this->getSession();
+        if ($this->useDefaultSession) {
+            $session->setExpirationHops(1, null);
+            $session->setExpirationSeconds($this->getTimeout());
+        }
         $session->word = $word;
         $this->word    = $word;
         return $this;
