@@ -10,7 +10,7 @@
 namespace ZendTest\Captcha;
 
 use DirectoryIterator;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 use Zend\Captcha;
 
 class FactoryTest extends TestCase

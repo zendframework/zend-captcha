@@ -10,12 +10,15 @@
 namespace ZendTest\Captcha;
 
 use DirectoryIterator;
+use PHPUnit\Framework\TestCase;
 use Zend\Captcha\Image as ImageCaptcha;
+use Zend\Captcha\Exception\NoFontProvidedException;
+use Zend\Captcha\Exception\ImageNotLoadableException;
 
 /**
  * @group      Zend_Captcha
  */
-class ImageTest extends \PHPUnit_Framework_TestCase
+class ImageTest extends TestCase
 {
     protected $tmpDir;
 
@@ -221,14 +224,14 @@ class ImageTest extends \PHPUnit_Framework_TestCase
 
     public function testNoFontProvidedWillThrowException()
     {
-        $this->setExpectedException('Zend\Captcha\Exception\NoFontProvidedException');
+        $this->expectException(NoFontProvidedException::class);
         $captcha = new ImageCaptcha();
         $captcha->generate();
     }
 
     public function testImageProvidedNotLoadableWillThrowException()
     {
-        $this->setExpectedException('Zend\Captcha\Exception\ImageNotLoadableException');
+        $this->expectException(ImageNotLoadableException::class);
         $captcha = new ImageCaptcha([
             'font'       => __DIR__. '/../Pdf/_fonts/Vera.ttf',
             'startImage' => 'file_not_found.png',
