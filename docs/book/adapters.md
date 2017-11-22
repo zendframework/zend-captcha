@@ -164,7 +164,7 @@ to the `$options` array as supported by [`Zend\Service\ReCaptcha\ReCaptcha`](htt
 
 ### Updating from v2 to v3 of this adapter
 
-As this adapter takes the same option keys as [`Zend\Service\ReCaptcha\ReCaptcha`](https://github.com/zendframework/ZendService_ReCaptcha) which supports Recaptcha API v2, this 
+As this adapter takes the same option keys as [`Zend\Service\ReCaptcha\ReCaptcha`](https://github.com/zendframework/ZendService_ReCaptcha) which supports Recaptcha API v2, this
 component no longer supports the `ssl`, `xhtml` and `lang` keys in the `$options`
 array that is passed to the constructor.
 
