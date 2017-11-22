@@ -92,7 +92,7 @@ figlet to the user.
 
 Options passed to the constructor will also be passed to the
 `Zend\Text\Figlet` object. See the
-[`Zend\Text\Figlet`](https://zendframework.github.io/zend-text/figlet/)
+[`Zend\Text\Figlet`](https://docs.zendframework.com/zend-text/figlet/)
 documentation for details on what configuration options are available.
 
 ## Zend\\Captcha\\Image
