@@ -2,10 +2,13 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-
 ## 2.7.1 - TBD
 
 ### Added
+
+- Nothing.
+
+### Changed
 
 - Nothing.
 
@@ -19,7 +22,8 @@ All notable changes to this project will be documented in this file, in reverse 
 
 ### Fixed
 
-- Nothing.
+- [#23](https://github.com/zendframework/zend-captcha/pull/23) fixes an issue with garbage collection of expired CAPTCHA images
+  when concurrent requests trigger collection.
 
 ## 2.7.0 - 2017-02-20
 
