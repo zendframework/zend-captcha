@@ -11,4 +11,4 @@ submissions where authenticated users are not necessary, but you want to prevent
 spam submissions.
 
 - File issues at https://github.com/zendframework/zend-captcha/issues
-- Documentation is at https://zendframework.github.io/zend-captcha/
+- Documentation is at https://docs.zendframework.com/zend-captcha/

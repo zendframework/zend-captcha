@@ -10,6 +10,8 @@
 namespace ZendTest\Captcha;
 
 use Zend\Captcha\ReCaptcha;
+use Zend\Http\Client as HttpClient;
+use Zend\Http\Client\Adapter\Socket;
 use ZendService\ReCaptcha\ReCaptcha as ReCaptchaService;
 
 /**
@@ -26,16 +28,8 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         if (! getenv('TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT')) {
-            $this->markTestSkipped('Enable TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT to test PDF render');
+            $this->markTestSkipped('Enable TESTS_ZEND_CAPTCHA_RECAPTCHA_SUPPORT to test Recaptcha');
         }
-
-        if (isset($this->word)) {
-            unset($this->word);
-        }
-
-        $this->captcha = new ReCaptcha([
-            'sessionClass' => 'ZendTest\Captcha\TestAsset\SessionContainer'
-        ]);
     }
 
     public function testConstructorShouldSetOptions()
@@ -162,5 +156,53 @@ class ReCaptchaTest extends \PHPUnit_Framework_TestCase
     {
         $captcha = new ReCaptcha;
         $this->assertEquals('captcha/recaptcha', $captcha->getHelperName());
+    }
+
+    public function testValidationForDifferentElementName()
+    {
+        $captcha = new ReCaptcha([
+            'site_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SITE_KEY'),
+            'secret_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY'),
+        ]);
+        $service = $captcha->getService();
+        $service->setIp('127.0.0.1');
+        $service->setHttpClient($this->getHttpClient());
+
+        $response = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
+        $value = 'g-recaptcha-response';
+        $context = ['g-recaptcha-response' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE')];
+
+        $this->assertTrue($captcha->isValid($value, $context));
+    }
+
+    public function testValidationForResponseElementName()
+    {
+        $captcha = new ReCaptcha([
+            'site_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SITE_KEY'),
+            'secret_key' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_SECRET_KEY'),
+        ]);
+        $service = $captcha->getService();
+        $service->setIp('127.0.0.1');
+        $service->setHttpClient($this->getHttpClient());
+
+        $response = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
+        $value = getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE');
+        $context = ['g-recaptcha-response' => getenv('TESTS_ZEND_SERVICE_RECAPTCHA_RESPONSE')];
+
+        $this->assertTrue($captcha->isValid($value, $context));
+    }
+
+    /**
+     * @return HttpClient
+     */
+    private function getHttpClient()
+    {
+        $socket = new Socket();
+        $socket->setOptions([
+            'ssltransport' => 'tls',
+        ]);
+        return new HttpClient(null, [
+            'adapter' => $socket,
+        ]);
     }
 }
