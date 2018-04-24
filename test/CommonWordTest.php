@@ -9,10 +9,13 @@
 
 namespace ZendTest\Captcha;
 
+use PHPUnit\Framework\TestCase;
+use Zend\Captcha\Exception\InvalidArgumentException;
+
 /**
  * @group      Zend_Captcha
  */
-abstract class CommonWordTest extends \PHPUnit_Framework_TestCase
+abstract class CommonWordTest extends TestCase
 {
     /**
      * Word adapter class name
@@ -28,7 +31,8 @@ abstract class CommonWordTest extends \PHPUnit_Framework_TestCase
     {
         $wordAdapter = new $this->wordClass;
         $wordAdapter->setSessionClass('ZendTest\Captcha\InvalidClassName');
-        $this->setExpectedException('Zend\Captcha\Exception\InvalidArgumentException', 'not found');
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage('not found');
         $wordAdapter->getSession();
     }
 
