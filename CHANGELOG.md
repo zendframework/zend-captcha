@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.8.0 - TBD
+## 2.8.0 - 2018-04-24
 
 ### Added
 
@@ -24,22 +24,6 @@ All notable changes to this project will be documented in this file, in reverse 
 
 - [#23](https://github.com/zendframework/zend-captcha/pull/23) fixes an issue with garbage collection of expired CAPTCHA images
   when concurrent requests trigger collection.
-
-## 2.7.1 - TBD
-
-### Added
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
-
-### Fixed
 
 - [#31](https://github.com/zendframework/zend-captcha/pull/31) fixes using the
   ReCaptcha response as the value parameter to isValid().
