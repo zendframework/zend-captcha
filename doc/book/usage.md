@@ -44,5 +44,5 @@ you will use the combination of:
 >
 > [zend-form](https://github.com/zendframework/zend-form) contains integration
 > with zend-captcha via the class `Zend\Form\Element\Captcha`; read the
-> [documentation on the CAPTCHA form element](http://framework.zend.com/manual/current/en/modules/zend.form.elements.html#captcha)
+> [documentation on the CAPTCHA form element](https://docs.zendframework.com/zend-form/element/captcha/)
 > for more details.
