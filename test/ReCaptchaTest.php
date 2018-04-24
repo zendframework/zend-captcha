@@ -9,6 +9,7 @@
 
 namespace ZendTest\Captcha;
 
+use PHPUnit\Framework\TestCase;
 use Zend\Captcha\ReCaptcha;
 use Zend\Http\Client as HttpClient;
 use Zend\Http\Client\Adapter\Socket;
@@ -17,7 +18,7 @@ use ZendService\ReCaptcha\ReCaptcha as ReCaptchaService;
 /**
  * @group      Zend_Captcha
  */
-class ReCaptchaTest extends \PHPUnit_Framework_TestCase
+class ReCaptchaTest extends TestCase
 {
     /**
      * Sets up the fixture, for example, open a network connection.

@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.8.0 - TBD
+
+### Added
+
+- [#39](https://github.com/zendframework/zend-captcha/pull/39) adds support for PHP 7.1 and 7.2.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- [#39](https://github.com/zendframework/zend-captcha/pull/39) removes support for HHVM.
+
+### Fixed
+
+- [#23](https://github.com/zendframework/zend-captcha/pull/23) fixes an issue with garbage collection of expired CAPTCHA images
+  when concurrent requests trigger collection.
 
 ## 2.7.1 - TBD
 
