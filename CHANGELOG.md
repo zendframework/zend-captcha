@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
-## 2.9.0 - TBD
+## 2.9.0 - 2019-06-18
 
 ### Added
 
@@ -19,28 +19,6 @@ All notable changes to this project will be documented in this file, in reverse 
 ### Removed
 
 - [#42](https://github.com/zendframework/zend-captcha/pull/42) removes support for zend-stdlib v2 releases.
-
-### Fixed
-
-- Nothing.
-
-## 2.8.1 - TBD
-
-### Added
-
-- Nothing.
-
-### Changed
-
-- Nothing.
-
-### Deprecated
-
-- Nothing.
-
-### Removed
-
-- Nothing.
 
 ### Fixed
 
