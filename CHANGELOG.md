@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file, in reverse chronological order by release.
 
+## 2.9.0 - TBD
+
+### Added
+
+- [#42](https://github.com/zendframework/zend-captcha/pull/42) adds support for PHP 7.3.
+
+### Changed
+
+- Nothing.
+
+### Deprecated
+
+- Nothing.
+
+### Removed
+
+- [#42](https://github.com/zendframework/zend-captcha/pull/42) removes support for zend-stdlib v2 releases.
+
+### Fixed
+
+- Nothing.
+
 ## 2.8.1 - TBD
 
 ### Added
