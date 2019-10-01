@@ -231,23 +231,12 @@
 
     
     
-        <div class="toc">
-            <h6 class="toc__headline">In This Article</h6>
-            <ul class="toc__list">
-                
-                    <li class="toc__entry">
-                        <a href="#zend-form-integration" class="toc__link">zend-form integration</a>
-                    </li>
-                
-            </ul>
-        </div>
-    
 
     </div>
 
     <h1 id="usage">Usage</h1>
 <p>A basic use case resembles the following:</p>
-<pre class="codehilite"><code class="language-php">// Originating request:
+<p> <pre class=codehilite><code class=language-php>// Originating request:
 $captcha = new Zend\Captcha\Figlet([
     'name'    =&gt; 'foo',
     'wordLen' =&gt; 6,
@@ -266,8 +255,7 @@ echo $captcha-&gt;getFiglet()-&gt;render($captcha-&gt;getWord());
 // - input =&gt; captcha value
 if ($captcha-&gt;isValid($_POST['foo'], $_POST)) {
     // Validated!
-}</code></pre>
-
+}</code></pre></p>
 <p>The above example demonstrates usage of a FIGlet string for the CAPTCHA.
 zend-captcha also provides adapters for:</p>
 <ul>
@@ -283,7 +271,7 @@ you will use the combination of:</p>
 <li><code>isValid()</code> to validate a submitted CAPTCHA solution</li>
 </ul>
 <blockquote>
-<h3 id="zend-form-integration">zend-form integration</h3>
+<h3>zend-form integration</h3>
 <p><a href="https://github.com/zendframework/zend-form">zend-form</a> contains integration
 with zend-captcha via the class <code>Zend\Form\Element\Captcha</code>; read the
 <a href="https://docs.zendframework.com/zend-form/element/captcha/">documentation on the CAPTCHA form element</a>
@@ -322,7 +310,7 @@ for more details.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-captcha/edit/master/docs/usage.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-captcha/edit/master/docs/book/usage.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>

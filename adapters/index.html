@@ -270,7 +270,7 @@
 <code>Zend\Captcha\AdapterInterface</code>, and provides several implementations.</p>
 <h2 id="the-adapterinterface">The AdapterInterface</h2>
 <p>All CAPTCHA adapters implement <code>Zend\Captcha\AdapterInterface</code>:</p>
-<pre class="codehilite"><code class="language-php">namespace Zend\Captcha;
+<p> <pre class=codehilite><code class=language-php>namespace Zend\Captcha;
 
 use Zend\Validator\ValidatorInterface;
 
@@ -284,8 +284,7 @@ interface AdapterInterface extends ValidatorInterface
 
     // Get helper name used for rendering this CAPTCHA type
     public function getHelperName();
-}</code></pre>
-
+}</code></pre></p>
 <p>The <code>name</code> setter and getter are used to specify and retrieve the CAPTCHA identifier.</p>
 <p>The most interesting method is <code>generate()</code>, which is used to create the CAPTCHA
 token. This process typically will store the token in the session so that you
@@ -328,7 +327,7 @@ default, the <code>wordLen</code>, <code>timeout</code>, and <code>sessionClass<
 concrete implementation may define additional keys or utilize the options in
 other ways.</p>
 <blockquote>
-<h3 id="abstractword-is-marked-abstract">AbstractWord is marked abstract</h3>
+<h3>AbstractWord is marked abstract</h3>
 <p><code>Zend\Captcha\AbstractWord</code> is an abstract class and may not be instantiated
 directly.</p>
 </blockquote>
@@ -406,7 +405,7 @@ to generate and validate CAPTCHAs.  It exposes the following methods:</p>
 </ul>
 <p>When constructing <code>Zend\Captcha\ReCaptcha</code>, you can use the same set of keys
 to the <code>$options</code> array as supported by <a href="https://github.com/zendframework/ZendService_ReCaptcha"><code>Zend\Service\ReCaptcha\ReCaptcha</code></a>.</p>
-<h3 id="updating-from-v2-to-v3-of-this-adapter">Updating from v2 to v3 of this adapter</h3>
+<h3>Updating from v2 to v3 of this adapter</h3>
 <p>As this adapter takes the same option keys as <a href="https://github.com/zendframework/ZendService_ReCaptcha"><code>Zend\Service\ReCaptcha\ReCaptcha</code></a> which supports Recaptcha API v2, this
 component no longer supports the <code>ssl</code>, <code>xhtml</code> and <code>lang</code> keys in the <code>$options</code>
 array that is passed to the constructor.</p>
@@ -441,7 +440,7 @@ keys are supported in this version, but are deprecated.</p>
     <div class="help-wanted">
         <p>
             Found a mistake or want to contribute to the documentation?
-            <a href="https://github.com/zendframework/zend-captcha/edit/master/docs/adapters.md" target="_blank" class="help-wanted__link">
+            <a href="https://github.com/zendframework/zend-captcha/edit/master/docs/book/adapters.md" target="_blank" class="help-wanted__link">
                 Edit this page on GitHub!
             </a>
         </p>
