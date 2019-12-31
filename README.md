@@ -1,5 +1,9 @@
 # zend-captcha
 
+> ## Repository abandoned 2019-12-31
+>
+> This repository has moved to laminas/laminas-captcha.
+
 [![Build Status](https://secure.travis-ci.org/zendframework/zend-captcha.svg?branch=master)](https://secure.travis-ci.org/zendframework/zend-captcha)
 [![Coverage Status](https://coveralls.io/repos/github/zendframework/zend-captcha/badge.svg?branch=master)](https://coveralls.io/github/zendframework/zend-captcha?branch=master)
 
